@@ -124,3 +124,33 @@ BEGIN
     END IF;
 END$$
 DELIMITER ;
+
+DROP TRIGGER IF EXISTS `vote_insert_trigger`;
+DELIMITER $$
+CREATE TRIGGER `vote_insert_trigger`
+AFTER INSERT
+ON `vote` FOR EACH ROW
+BEGIN
+    IF NEW.`post_id` IS NOT NULL THEN
+        UPDATE `employee_post` SET `rating` = `rating` + NEW.`delta` WHERE `id` = NEW.`post_id`;
+    END IF;
+    IF NEW.`comment_id` IS NOT NULL THEN
+        UPDATE `comment` SET `rating` = `rating` + NEW.`delta` WHERE `id` = NEW.`comment_id`;
+    END IF;
+END$$
+DELIMITER ;
+
+DROP TRIGGER IF EXISTS `vote_update_trigger`;
+DELIMITER $$
+CREATE TRIGGER `vote_update_trigger`
+AFTER UPDATE
+ON `vote` FOR EACH ROW
+BEGIN
+    IF NEW.`post_id` IS NOT NULL THEN
+        UPDATE `employee_post` SET `rating` = `rating` + (NEW.`delta` - OLD.`delta`) WHERE `id` = NEW.`post_id`;
+    END IF;
+    IF NEW.`comment_id` IS NOT NULL THEN
+        UPDATE `comment` SET `rating` = `rating`+ (NEW.`delta` - OLD.`delta`) WHERE `id` = NEW.`comment_id`;
+    END IF;
+END$$
+DELIMITER ;

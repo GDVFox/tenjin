@@ -21,6 +21,8 @@ services:
     swagger-editor:
         image: swaggerapi/swagger-editor
         container_name: tenjin-swagger-editor
+        ports:
+            - '8082:8082'
         depends_on:
             - tenjin
 

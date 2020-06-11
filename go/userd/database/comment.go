@@ -20,6 +20,7 @@ const (
 type CommentModel struct {
 	ID         int64         `db:"id"`
 	Text       string        `db:"text"`
+	Rating     int64         `db:"rating"`
 	Status     CommentStatus `db:"status"`
 	CreatedAt  time.Time     `db:"created_at"`
 	UpdatedAt  time.Time     `db:"updated_at"`
@@ -44,7 +45,7 @@ func CreateComment(s dbr.SessionRunner, comment *CommentModel) error {
 // ReadComments loads comment from database
 func ReadComments(s dbr.SessionRunner, employeeID int64, postIDs []int64) ([]*CommentModel, error) {
 	q := s.Select(
-		"id", "text", "CAST(status AS unsigned) AS status",
+		"id", "text", "rating", "CAST(status AS unsigned) AS status",
 		"created_at", "updated_at",
 		"employee_id", "post_id", "parent",
 	).From("comment")

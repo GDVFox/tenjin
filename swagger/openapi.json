@@ -918,6 +918,9 @@
                       "text": {
                         "type": "string"
                       },
+                      "rating": {
+                        "type": "integer"
+                      },
                       "author": {
                         "type": "object",
                         "properties": {
@@ -946,6 +949,7 @@
                     "id": 1,
                     "title": "My ultra cool Go task from Google!",
                     "text": "Invert a binary tree.",
+                    "rating": 5,
                     "author": {
                       "id": 1,
                       "first_name": "Anton",
@@ -1007,6 +1011,9 @@
                     "text": {
                       "type": "string"
                     },
+                    "rating": {
+                      "type": "integer"
+                    },
                     "created_at": {
                       "type": "string"
                     },
@@ -1026,6 +1033,9 @@
                           },
                           "text": {
                             "type": "string"
+                          },
+                          "rating": {
+                            "type": "integer"
                           },
                           "created_at": {
                             "type": "string"
@@ -1092,6 +1102,7 @@
                   "id": 1,
                   "title": "My ultra cool Go task from Google!",
                   "text": "Invert a binary tree.",
+                  "rating": 1,
                   "created_at": "2019-07-01T11:22:33Z",
                   "updated_at": "2019-07-01T14:15:16Z",
                   "author": {
@@ -1103,6 +1114,7 @@
                     {
                       "id": 1,
                       "text": "Hello, this is my solution.",
+                      "rating": 2,
                       "created_at": "2019-07-12T22:11:00Z",
                       "updated_at": "2019-07-13T17:18:19Z",
                       "is_approved": true,
@@ -1115,6 +1127,7 @@
                         {
                           "id": 1,
                           "text": "Yeah, cool solution.",
+                          "rating": 1,
                           "created_at": "2019-07-13T22:11:00Z",
                           "updated_at": "2019-07-13T22:11:00Z",
                           "author": {
@@ -1126,6 +1139,7 @@
                             {
                               "id": 2,
                               "text": "Thanks a lot!",
+                              "rating": 0,
                               "created_at": "2019-07-13T22:31:00Z",
                               "updated_at": "2019-07-13T22:31:00Z",
                               "author": {
@@ -3210,6 +3224,9 @@
           },
           "text": {
             "type": "string"
+          },
+          "rating": {
+            "type": "integer"
           },
           "deleted": {
             "type": "boolean"

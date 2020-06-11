@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
     `employee_id` int(11) NOT NULL,
     `parent` int(11) NULL DEFAULT NULL,
     `text` text NOT NULL,
+    `rating` int(11) NOT NULL DEFAULT 0,
     `status` enum('active', 'deleted') NOT NULL DEFAULT 'active',
     `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

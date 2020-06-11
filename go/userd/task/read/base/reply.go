@@ -16,6 +16,7 @@ type TaskReplyItem struct {
 	ID     int64      `json:"id"`
 	Title  string     `json:"title"`
 	Text   string     `json:"text"`
+	Rating int64      `json:"rating"`
 	Author AuthorItem `json:"author"`
 	Skills []string   `json:"require_skills,omitempty"`
 }
@@ -41,9 +42,10 @@ func newReplyBulder() *replyBuilder {
 func (b *replyBuilder) consumeTasks(tt []*database.TaskModel) {
 	for _, t := range tt {
 		b.tasks = append(b.tasks, &TaskReplyItem{
-			ID:    t.ID,
-			Title: t.Title,
-			Text:  t.Text,
+			ID:     t.ID,
+			Title:  t.Title,
+			Text:   t.Text,
+			Rating: t.Rating,
 			Author: AuthorItem{
 				ID: t.EmployeeID,
 			},

@@ -27,7 +27,7 @@ func CreateTask(s dbr.SessionRunner, model *TaskModel) error {
 // ReadTask reads tasks with taskID with employeeID as author
 func ReadTask(s dbr.SessionRunner, taskID, employeeID []int64) ([]*TaskModel, error) {
 	columns := []string{
-		"p.id AS id", "t.title AS title",
+		"p.id AS id", "t.title AS title", "p.rating AS rating",
 		"p.text AS text", "p.employee_id AS employee_id",
 	}
 	q := readTaks(s, columns, taskID, employeeID)
@@ -39,7 +39,7 @@ func ReadTask(s dbr.SessionRunner, taskID, employeeID []int64) ([]*TaskModel, er
 // ReadTaskFull reads FULL task with taskID with employeeID as author
 func ReadTaskFull(s dbr.SessionRunner, taskID int64) (*TaskModel, error) {
 	columns := []string{
-		"p.id AS id", "t.title AS title",
+		"p.id AS id", "t.title AS title", "p.rating AS rating",
 		"p.text AS text", "CAST(p.status as unsigned) AS status",
 		"p.created_at AS created_at", "p.updated_at AS updated_at",
 		"p.employee_id AS employee_id",

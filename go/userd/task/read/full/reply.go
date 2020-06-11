@@ -24,6 +24,7 @@ type AttachmentItem struct {
 type CommentItem struct {
 	ID          int64             `json:"id"`
 	Text        *string           `json:"text,omitempty"`
+	Rating      *int64            `json:"rating"`
 	CreatedAt   *time.Time        `json:"created_at,omitempty"`
 	UpdatedAt   *time.Time        `json:"updated_at,omitempty"`
 	Deleted     bool              `json:"deleted"`
@@ -36,6 +37,7 @@ type CommentItem struct {
 type SolutionItem struct {
 	ID          int64             `json:"id"`
 	Text        string            `json:"text"`
+	Rating      int64             `json:"rating"`
 	CreatedAt   time.Time         `json:"created_at"`
 	UpdatedAt   time.Time         `json:"updated_at"`
 	IsApproved  bool              `json:"is_approved"`
@@ -55,6 +57,7 @@ type TaskReplyItem struct {
 	ID          int64             `json:"id"`
 	Title       string            `json:"title"`
 	Text        string            `json:"text"`
+	Rating      int64             `json:"rating"`
 	CreatedAt   time.Time         `json:"created_at"`
 	UpdatedAt   time.Time         `json:"updated_at"`
 	Author      *AuthorItem       `json:"author"`
@@ -108,6 +111,7 @@ func (b *replyBuilder) consumeTasks(t *database.TaskModel) {
 		ID:        t.ID,
 		Title:     t.Title,
 		Text:      t.Text,
+		Rating:    t.Rating,
 		CreatedAt: t.CreatedAt,
 		UpdatedAt: t.UpdatedAt,
 		Author: &AuthorItem{
@@ -124,6 +128,7 @@ func (b *replyBuilder) consumeSolutions(ss []*database.SolutionModel) {
 		b.solutions = append(b.solutions, &SolutionItem{
 			ID:         s.ID,
 			Text:       s.Text,
+			Rating:     s.Rating,
 			CreatedAt:  s.CreatedAt,
 			UpdatedAt:  s.UpdatedAt,
 			IsApproved: s.IsApproved,
@@ -162,6 +167,7 @@ func (b *replyBuilder) consumeComments(cc []*database.CommentModel) {
 			b.comments = append(b.comments, &CommentItem{
 				ID:        c.ID,
 				Text:      &c.Text,
+				Rating:    &c.Rating,
 				CreatedAt: &c.CreatedAt,
 				UpdatedAt: &c.UpdatedAt,
 				Deleted:   false,

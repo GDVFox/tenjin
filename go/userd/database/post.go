@@ -20,6 +20,7 @@ const (
 type PostModel struct {
 	ID         int64     `db:"id"`
 	Text       string    `db:"text"`
+	Rating     int64     `db:"rating"`
 	CreatedAt  time.Time `db:"created_at"`
 	UpdatedAt  time.Time `db:"updated_at"`
 	EmployeeID int64     `db:"employee_id"`
