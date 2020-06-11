@@ -13,9 +13,7 @@ services:
             - ./database/init:/docker-entrypoint-initdb.d:ro
 
     tenjin:
-        build:
-            context: ./go
-            dockerfile: Dockerfile
+        image: gdvfox/tenjin:1.0.0
         container_name: tenjin-app
         environment:
             - CORS_HOSTS="http://127.0.0.1:8081"
