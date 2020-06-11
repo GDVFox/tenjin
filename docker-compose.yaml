@@ -38,6 +38,7 @@ services:
         image: nginx:mainline-alpine
         container_name: tenjin-nginx
         ports:
+            - '443:443'
             - '80:80'
         volumes:
             - ./nginx/ssl:/etc/ssl/gdvfox
