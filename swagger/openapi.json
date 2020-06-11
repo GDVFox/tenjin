@@ -66,9 +66,6 @@
                   "person": {
                     "type": "object",
                     "properties": {
-                      "photo_uri": {
-                        "type": "string"
-                      },
                       "first_name": {
                         "type": "string"
                       },
@@ -117,7 +114,6 @@
                 },
                 "example": {
                   "person": {
-                    "photo_uri": "example.com/photo/1",
                     "first_name": "Anton",
                     "last_name": "Bulkin"
                   },
@@ -204,9 +200,6 @@
                       "id": {
                         "type": "integer"
                       },
-                      "photo_uri": {
-                        "type": "string"
-                      },
                       "first_name": {
                         "type": "string"
                       },
@@ -225,7 +218,6 @@
                 "example": [
                   {
                     "id": 1,
-                    "photo_uri": "example.com/photo/1",
                     "first_name": "Anton",
                     "last_name": "Bulkin",
                     "department_name": "Advertising: Go development team",
@@ -281,9 +273,6 @@
                     "id": {
                       "type": "integer"
                     },
-                    "photo_uri": {
-                      "type": "string"
-                    },
                     "first_name": {
                       "type": "string"
                     },
@@ -334,7 +323,6 @@
                 },
                 "example": {
                   "id": 1,
-                  "photo_uri": "example.com/photo/1",
                   "first_name": "Anton",
                   "last_name": "Bulkin",
                   "status": "active",
@@ -407,9 +395,6 @@
                   "id": {
                     "type": "integer"
                   },
-                  "photo_uri": {
-                    "type": "string"
-                  },
                   "first_name": {
                     "type": "string"
                   },
@@ -446,7 +431,6 @@
                 ]
               },
               "example": {
-                "photo_uri": "example.com/photo/2",
                 "work": {
                   "department_name": "Advertising: Rust development team",
                   "appointment_name": "Middle developer",
@@ -939,9 +923,6 @@
                         "properties": {
                           "id": {
                             "type": "integer"
-                          },
-                          "photo_uri": {
-                            "type": "string"
                           },
                           "first_name": {
                             "type": "string"
@@ -3302,9 +3283,6 @@
         "properties": {
           "id": {
             "type": "integer"
-          },
-          "photo_uri": {
-            "type": "string"
           },
           "first_name": {
             "type": "string"

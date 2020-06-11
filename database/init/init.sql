@@ -21,7 +21,6 @@ CREATE TABLE IF NOT EXISTS `appointement` (
 
 CREATE TABLE IF NOT EXISTS `person` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `photo_uri` text NULL,
     `first_name` varchar(128) NOT NULL,
     `last_name` varchar(128) NOT NULL,
     `status` enum('active', 'blocked', 'deleted') NOT NULL DEFAULT 'active',
@@ -33,7 +32,6 @@ CREATE TABLE IF NOT EXISTS `person` (
 
 CREATE TABLE IF NOT EXISTS `employee` (
     `person_id` int(11) NOT NULL,
-    `password` blob NOT NULL,
     `email` varchar(320) NOT NULL,
     `hired_at` date NOT NULL,
 

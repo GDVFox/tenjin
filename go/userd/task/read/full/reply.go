@@ -10,7 +10,6 @@ import (
 // AuthorItem represents short info about author
 type AuthorItem struct {
 	ID        int64  `json:"id"`
-	PhotoURI  string `json:"photo_uri,omitempty"`
 	FirstName string `json:"first_name"`
 	LastName  string `json:"last_name"`
 }
@@ -219,12 +218,10 @@ func (b *replyBuilder) consumeAuthors(pp []*database.PersonModel) {
 		b.authorIndex[p.ID] = i
 	}
 
-	b.task.Author.PhotoURI = pp[b.authorIndex[b.task.Author.ID]].PhotoURI.String
 	b.task.Author.FirstName = pp[b.authorIndex[b.task.Author.ID]].FirstName
 	b.task.Author.LastName = pp[b.authorIndex[b.task.Author.ID]].LastName
 
 	for _, s := range b.solutions {
-		s.Author.PhotoURI = pp[b.authorIndex[s.Author.ID]].PhotoURI.String
 		s.Author.FirstName = pp[b.authorIndex[s.Author.ID]].FirstName
 		s.Author.LastName = pp[b.authorIndex[s.Author.ID]].LastName
 	}
@@ -233,7 +230,6 @@ func (b *replyBuilder) consumeAuthors(pp []*database.PersonModel) {
 		if c.Author == nil {
 			continue
 		}
-		c.Author.PhotoURI = pp[b.authorIndex[c.Author.ID]].PhotoURI.String
 		c.Author.FirstName = pp[b.authorIndex[c.Author.ID]].FirstName
 		c.Author.LastName = pp[b.authorIndex[c.Author.ID]].LastName
 	}

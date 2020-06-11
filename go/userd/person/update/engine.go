@@ -19,7 +19,6 @@ func Process(r *http.Request, sess *db.Session, a server.Arguments, logger *logg
 		if arg.IsCommonUpdated() || arg.IsWorkUpdated() {
 			params := &database.PersonUpdateParams{
 				ID:        arg.ID,
-				PhotoURI:  arg.PhotoURI,
 				Blocked:   arg.Blocked,
 				FirstName: arg.FirstName,
 				LastName:  arg.LastName,

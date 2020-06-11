@@ -7,7 +7,6 @@ import (
 // PersonReply represents reply
 type PersonReply struct {
 	ID              int64  `json:"id"`
-	PhotoURI        string `json:"photo_uri"`
 	FirstName       string `json:"first_name"`
 	LastName        string `json:"last_name"`
 	DepartmentName  string `json:"department_name,omitempty"`
@@ -29,7 +28,6 @@ func (b *replyBuilder) consumePersons(pp []*database.PersonModel) {
 	for _, p := range pp {
 		b.persons = append(b.persons, &PersonReply{
 			ID:        p.ID,
-			PhotoURI:  p.PhotoURI.String,
 			FirstName: p.FirstName,
 			LastName:  p.LastName,
 		})

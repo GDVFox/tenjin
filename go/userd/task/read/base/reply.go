@@ -7,7 +7,6 @@ import (
 // AuthorItem represents short info about author
 type AuthorItem struct {
 	ID        int64  `json:"id"`
-	PhotoURI  string `json:"photo_uri,omitempty"`
 	FirstName string `json:"first_name"`
 	LastName  string `json:"last_name"`
 }
@@ -90,7 +89,6 @@ func (b *replyBuilder) consumeSkillRequirements(ss []*database.SkillRequirement)
 func (b *replyBuilder) reply() []*TaskReplyItem {
 	for _, t := range b.tasks {
 		author := b.authorsSet[t.Author.ID]
-		t.Author.PhotoURI = author.PhotoURI.String
 		t.Author.FirstName = author.FirstName
 		t.Author.LastName = author.LastName
 

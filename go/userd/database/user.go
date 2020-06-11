@@ -38,10 +38,9 @@ func (s PersonStatus) MarshalJSON() ([]byte, error) {
 
 // PersonModel represents person entity in table
 type PersonModel struct {
-	ID        int64          `db:"id" json:"id"`
-	PhotoURI  dbr.NullString `db:"photo_uri" json:"photo_uri"`
-	FirstName string         `db:"first_name" json:"first_name"`
-	LastName  string         `db:"last_name" json:"last_name"`
+	ID        int64  `db:"id" json:"id"`
+	FirstName string `db:"first_name" json:"first_name"`
+	LastName  string `db:"last_name" json:"last_name"`
 
 	// optional fields
 	Status    PersonStatus `db:"status" json:"status,omitempty"`
@@ -60,7 +59,7 @@ type EmployeeModel struct {
 // CreatePerson creates person row in database
 func CreatePerson(s dbr.SessionRunner, person *PersonModel) error {
 	res, err := s.InsertInto("person").
-		Columns("photo_uri", "first_name", "last_name").
+		Columns("first_name", "last_name").
 		Record(person).Exec()
 	if err != nil {
 		return err
@@ -86,7 +85,7 @@ func CreatedEmployee(s dbr.SessionRunner, employee *EmployeeModel) error {
 
 // ReadPerson reades person row in database
 func ReadPerson(s dbr.SessionRunner, id []int64, employeesOnly bool) ([]*PersonModel, error) {
-	q := readPerson(s, []string{"p.id", "p.photo_uri", "p.first_name", "p.last_name"}, id, employeesOnly)
+	q := readPerson(s, []string{"p.id", "p.first_name", "p.last_name"}, id, employeesOnly)
 	res := make([]*PersonModel, 0, len(id))
 	_, err := q.Load(&res)
 	return res, err
@@ -95,7 +94,7 @@ func ReadPerson(s dbr.SessionRunner, id []int64, employeesOnly bool) ([]*PersonM
 // ReadPersonFull reades person row in database, if exists connected employee, reads employee
 func ReadPersonFull(s dbr.SessionRunner, id []int64) ([]*EmployeeModel, error) {
 	columns := []string{
-		"p.id", "p.photo_uri",
+		"p.id",
 		"p.first_name", "p.last_name",
 		"CAST(p.status as unsigned) AS status",
 		"p.created_at", "p.updated_at",
@@ -124,7 +123,6 @@ func readPerson(s dbr.SessionRunner, columns []string, id []int64, employeesOnly
 // PersonUpdateParams parameters for user update
 type PersonUpdateParams struct {
 	ID        int64
-	PhotoURI  *string
 	Blocked   *bool
 	FirstName *string
 	LastName  *string
@@ -133,13 +131,6 @@ type PersonUpdateParams struct {
 // UpdatePerson updates person row in database
 func UpdatePerson(s dbr.SessionRunner, p *PersonUpdateParams) error {
 	q := s.Update("person")
-	if p.PhotoURI != nil {
-		if *p.PhotoURI == "" {
-			q.Set("photo_uri", "NULL")
-		} else {
-			q.Set("photo_uri", *p.PhotoURI)
-		}
-	}
 	if p.Blocked != nil {
 		status := PersonStatusActive
 		if *p.Blocked {

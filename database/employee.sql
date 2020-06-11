@@ -1,6 +1,5 @@
 CREATE TABLE IF NOT EXISTS `employee` (
     `person_id` int(11) NOT NULL,
-    `password` blob NOT NULL,
     `email` varchar(320) NOT NULL,
     `hired_at` date NOT NULL,
 

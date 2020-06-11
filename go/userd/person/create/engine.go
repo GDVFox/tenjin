@@ -21,12 +21,8 @@ func Process(r *http.Request, sess *db.Session, a server.Arguments, logger *logg
 
 		if arg.Person != nil {
 			person = &database.PersonModel{
-				PhotoURI:  dbr.NewNullString(arg.Person.PhotoURI),
 				FirstName: arg.Person.FirstName,
 				LastName:  arg.Person.LastName,
-			}
-			if arg.Person.PhotoURI == nil {
-				person.PhotoURI.Valid = false
 			}
 			if err := database.CreatePerson(tx, person); err != nil {
 				return errors.Wrap(err, "can not create base person")

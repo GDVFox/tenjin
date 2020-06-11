@@ -12,9 +12,8 @@ import (
 
 // PersonArguments represents person create args
 type PersonArguments struct {
-	PhotoURI  *string `json:"photo_uri"`
-	FirstName string  `json:"first_name"`
-	LastName  string  `json:"last_name"`
+	FirstName string `json:"first_name"`
+	LastName  string `json:"last_name"`
 }
 
 // Validate checks argument correct

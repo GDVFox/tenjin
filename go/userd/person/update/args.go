@@ -74,7 +74,6 @@ func (a *WorkArguments) Validate() error {
 // Arguments represents arguments for person update
 type Arguments struct {
 	ID        int64          `json:"id"`
-	PhotoURI  *string        `json:"photo_uri"`
 	FirstName *string        `json:"first_name"`
 	LastName  *string        `json:"last_name"`
 	Blocked   *bool          `json:"blocked"`
@@ -83,7 +82,7 @@ type Arguments struct {
 
 // Validate checks argument correct
 func (a *Arguments) Validate() error {
-	if a.PhotoURI == nil && a.FirstName == nil && a.LastName == nil && a.Blocked == nil {
+	if a.FirstName == nil && a.LastName == nil && a.Blocked == nil {
 		return server.EmptyArgumentsHTTPError
 	}
 	if (a.FirstName != nil && *a.FirstName == "") ||
@@ -108,7 +107,7 @@ func (a *Arguments) Resolve(s *db.Session, r *http.Request) error {
 
 // IsCommonUpdated returns true if common fields has to be updated
 func (a *Arguments) IsCommonUpdated() bool {
-	return a.PhotoURI != nil || a.FirstName != nil || a.LastName != nil || a.Blocked != nil
+	return a.FirstName != nil || a.LastName != nil || a.Blocked != nil
 }
 
 // IsWorkUpdated returns true if work fields has to be updated

@@ -17,7 +17,6 @@ type WorkHistoryItem struct {
 // PersonFullReply represents reply
 type PersonFullReply struct {
 	ID        int64                 `json:"id"`
-	PhotoURI  string                `json:"photo_uri"`
 	FirstName string                `json:"first_name"`
 	LastName  string                `json:"last_name"`
 	Status    database.PersonStatus `json:"status"`
@@ -40,7 +39,6 @@ func newReplyBulder() *replyBuilder {
 
 func (b *replyBuilder) consumePerson(e *database.EmployeeModel) {
 	b.person.ID = e.ID
-	b.person.PhotoURI = e.PhotoURI.String
 	b.person.FirstName = e.FirstName
 	b.person.LastName = e.LastName
 	b.person.Status = e.Status
