@@ -13,8 +13,6 @@ services:
     tenjin:
         image: gdvfox/tenjin:1.0.1
         container_name: tenjin-app
-        ports:
-            - '8888:8888'
         depends_on: 
             - database
 
