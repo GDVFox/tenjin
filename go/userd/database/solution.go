@@ -38,7 +38,7 @@ const (
 // ReadSolution loads solutions to taskIDs with author authorIDs.
 func ReadSolution(s dbr.SessionRunner, taskIDs, authorIDs []int64, approvedOnly bool, order SolutionOrder) ([]*SolutionModel, error) {
 	q := s.Select(
-		"p.id AS id", "p.text AS text",
+		"p.id AS id", "p.text AS text", "p.rating AS rating",
 		"p.created_at AS created_at ", "p.updated_at AS updated_at",
 		"p.employee_id AS employee_id",
 		"s.task_id AS task_id", "s.is_approved AS is_approved",
