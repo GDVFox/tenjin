@@ -13,8 +13,6 @@ services:
     tenjin:
         image: gdvfox/tenjin:1.0.0
         container_name: tenjin-app
-        environment:
-            - CORS_HOSTS="http://127.0.0.1:8081"
         ports:
             - '8888:8888'
         depends_on: 
@@ -42,6 +40,7 @@ services:
         ports:
             - '80:80'
         volumes:
+            - ./nginx/ssl:/etc/ssl/gdvfox
             - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
         depends_on: 
             - tenjin
