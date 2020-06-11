@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:8084/v1"
+      "url": "http://tenjin.gdvfox.art/v1"
     }
   ],
   "tags": [
