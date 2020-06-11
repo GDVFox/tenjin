@@ -11,7 +11,7 @@ services:
             - ./database/init:/docker-entrypoint-initdb.d:ro
 
     tenjin:
-        image: gdvfox/tenjin:1.0.0
+        image: gdvfox/tenjin:1.0.1
         container_name: tenjin-app
         ports:
             - '8888:8888'

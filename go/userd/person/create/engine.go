@@ -34,7 +34,6 @@ func Process(r *http.Request, sess *db.Session, a server.Arguments, logger *logg
 		if arg.Employee != nil {
 			employee := &database.EmployeeModel{
 				PersonModel: *person,
-				Password:    []byte{0x01, 0x02, 0x03},
 				Email:       arg.Employee.Email,
 				HiredAt:     arg.Employee.HiredAt,
 			}

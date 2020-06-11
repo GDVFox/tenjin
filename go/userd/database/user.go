@@ -51,9 +51,8 @@ type PersonModel struct {
 // EmployeeModel represents employee entity in table
 type EmployeeModel struct {
 	PersonModel
-	Email    string    `db:"email" json:"email"`
-	Password []byte    `db:"password"`
-	HiredAt  time.Time `db:"hired_at" json:"hired_at"`
+	Email   string    `db:"email" json:"email"`
+	HiredAt time.Time `db:"hired_at" json:"hired_at"`
 }
 
 // CreatePerson creates person row in database
@@ -73,7 +72,6 @@ func CreatedEmployee(s dbr.SessionRunner, employee *EmployeeModel) error {
 	res, err := s.InsertInto("employee").
 		Pair("person_id", employee.ID).
 		Pair("email", employee.Email).
-		Pair("password", employee.Password).
 		Pair("hired_at", employee.HiredAt).
 		Exec()
 	if err != nil {
