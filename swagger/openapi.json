@@ -1,0 +1,3407 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Tenjin",
+    "description": "Система для проведения собеседований. Каждый сотрудник может загрузить задачу, комменитровать задачи, добавлять решения, голосовать за задачи. Кроме того, в системе хранятся анкеты соискателей, история их собеседований с результатами. Таким образом, возможно следить за прогрессом соискателя, исключается возможность предложить одинаковые задачи. При обсуждении задач сотрудники деляться опытом, улучшая свои навыки и качество проводимых собеседований.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8084/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "person",
+      "description": "API для работы с профилями соискателей/сотрудников."
+    },
+    {
+      "name": "department",
+      "description": "API для работы с отделами компании."
+    },
+    {
+      "name": "appointment",
+      "description": "API для работы с должностями в компании."
+    },
+    {
+      "name": "task",
+      "description": "API для работы с задачами для собеседований."
+    },
+    {
+      "name": "solution",
+      "description": "API для работы с решениями задач, предложенными участниками."
+    },
+    {
+      "name": "comment",
+      "description": "API для работы с комментариями сотрудников."
+    },
+    {
+      "name": "vote",
+      "description": "API для работы с голосования за активности пользователей."
+    },
+    {
+      "name": "vacancy",
+      "description": "API для работы с вакансиями в компании."
+    },
+    {
+      "name": "interview",
+      "description": "API для работы с интервью."
+    }
+  ],
+  "paths": {
+    "/person.json": {
+      "post": {
+        "tags": [
+          "person"
+        ],
+        "summary": "Создать новый профиль сотудника/соиcкателя",
+        "operationId": "createPerson",
+        "requestBody": {
+          "description": "Секция `person` позволяет создать базового пользователя. Секция `employee` отвечает за создание сотрудника. Если у сотрудника задан `person_id`, то сотрудник будет связан с указанным базовым пользователем. Иначе базовый пользователь будет создан из секции `person` и связан с сотрудником (если передана секция `employee`).",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "person": {
+                    "type": "object",
+                    "properties": {
+                      "photo_uri": {
+                        "type": "string"
+                      },
+                      "first_name": {
+                        "type": "string"
+                      },
+                      "last_name": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "first_name",
+                      "last_name"
+                    ]
+                  },
+                  "employee": {
+                    "type": "object",
+                    "properties": {
+                      "person_id": {
+                        "type": "integer"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "hired_at": {
+                        "type": "string"
+                      },
+                      "work": {
+                        "type": "object",
+                        "properties": {
+                          "department_name": {
+                            "type": "string"
+                          },
+                          "appointment_name": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "department_name",
+                          "appointment_name"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "email",
+                      "hired_at"
+                    ]
+                  }
+                },
+                "example": {
+                  "person": {
+                    "photo_uri": "example.com/photo/1",
+                    "first_name": "Anton",
+                    "last_name": "Bulkin"
+                  },
+                  "employee": {
+                    "email": "a.bulkin@corp.example.com",
+                    "hired_at": "2019-07-01T10:00:00.000Z",
+                    "work": {
+                      "department_name": "Advertising: Go development team",
+                      "appointment_name": "Middle developer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Пользователь создан.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Неверные аргументы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "person"
+        ],
+        "summary": "Получить список зарегестрированных пользователей",
+        "operationId": "readBasePerson",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "employees_only",
+            "description": "Получить только сотрудников",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Кроме того, можно передать массив id в теле запроса, чтобы получить информацию о нескольких пользователях."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Список соискателей и/или сотрудников. С параметром `employees_only` выводится последнее место работы, которое определяется по следующим правилам: возвращается новейшее место текущей работы, либо, в случае, если сотрудник нигде не работает последнее местро работы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "photo_uri": {
+                        "type": "string"
+                      },
+                      "first_name": {
+                        "type": "string"
+                      },
+                      "last_name": {
+                        "type": "string"
+                      },
+                      "department_name": {
+                        "type": "string"
+                      },
+                      "appointment_name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "photo_uri": "example.com/photo/1",
+                    "first_name": "Anton",
+                    "last_name": "Bulkin",
+                    "department_name": "Advertising: Go development team",
+                    "appointment_name": "Middle developer"
+                  },
+                  {
+                    "id": 2,
+                    "first_name": "Bez",
+                    "last_name": "Rabotny"
+                  }
+                ]
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/person/{id}.json": {
+      "get": {
+        "tags": [
+          "person"
+        ],
+        "summary": "Получить полную информацию о пользователе",
+        "operationId": "readFullPerson",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Полная информация о пользователе. История работы отсортирована следующим образом: сначала идут действующие места работы, отсортированные по `date_from`, потом идут покинутые места работы с аналогичной сортировкой.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "photo_uri": {
+                      "type": "string"
+                    },
+                    "first_name": {
+                      "type": "string"
+                    },
+                    "last_name": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "hired_at": {
+                      "type": "string"
+                    },
+                    "work": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "department_name": {
+                            "type": "string"
+                          },
+                          "appointment_name": {
+                            "type": "string"
+                          },
+                          "date_from": {
+                            "type": "string"
+                          },
+                          "date_to": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "department_name",
+                          "appointment_name",
+                          "date_from"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "id": 1,
+                  "photo_uri": "example.com/photo/1",
+                  "first_name": "Anton",
+                  "last_name": "Bulkin",
+                  "status": "active",
+                  "created_at": "2020-06-07T10:22:27Z",
+                  "updated_at": "2020-06-07T10:22:27Z",
+                  "email": "a.bulkin@corp.example.com",
+                  "hired_at": "2019-07-01T00:00:00Z",
+                  "work": [
+                    {
+                      "department_name": "Advertising: Go development team",
+                      "appointment_name": "Middle developer",
+                      "date_from": "2019-07-01T00:00:00Z"
+                    },
+                    {
+                      "department_name": "Advertising: Elixir development team",
+                      "appointment_name": "Lead developer",
+                      "date_from": "2019-07-01T00:00:00Z",
+                      "date_to": "2020-03-01T00:00:00Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Пользователь не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "person"
+        ],
+        "summary": "Обновить информацию о пользователе",
+        "operationId": "updatePerson",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Для создания новой работы передается `date_fron`. Если необходимо закончить работу, то можно выставить специальный `date_to`, либо оставить его пустым, тогда будет установлено текущее время.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "photo_uri": {
+                    "type": "string"
+                  },
+                  "first_name": {
+                    "type": "string"
+                  },
+                  "last_name": {
+                    "type": "string"
+                  },
+                  "blocked": {
+                    "type": "boolean"
+                  },
+                  "work": {
+                    "type": "object",
+                    "properties": {
+                      "department_name": {
+                        "type": "string"
+                      },
+                      "appointment_name": {
+                        "type": "string"
+                      },
+                      "date_from": {
+                        "type": "string"
+                      },
+                      "date_to": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "department_name",
+                      "appointment_name"
+                    ]
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              },
+              "example": {
+                "photo_uri": "example.com/photo/2",
+                "work": {
+                  "department_name": "Advertising: Rust development team",
+                  "appointment_name": "Middle developer",
+                  "date_from": "2019-07-01T00:00:00Z"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Пользователь обновлен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Некорректные аргументы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Пользователь не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "person"
+        ],
+        "summary": "Удалить пользователя",
+        "operationId": "deletePerson",
+        "description": "Также автоматически будут завершены все работы пользователя с `date_to` равным текущему времени.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Объект удален",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Пользователь не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/department.json": {
+      "post": {
+        "tags": [
+          "department"
+        ],
+        "summary": "Создать запись о новом отделе",
+        "operationId": "createDepartment",
+        "requestBody": {
+          "description": "Название отдела, которое потом можно будет использовать в запросах, требующих `department_name`.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "example": {
+                  "name": "Mail: Go development team"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Отдел создан.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Неверные аргументы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "department"
+        ],
+        "summary": "Получить все существующие отделы",
+        "operationId": "readDepartment",
+        "responses": {
+          "200": {
+            "description": "Список имен отделов.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "name": "Advertising: Go development team"
+                  },
+                  {
+                    "name": "Mail: Go development team"
+                  }
+                ]
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/appointment.json": {
+      "post": {
+        "tags": [
+          "appointment"
+        ],
+        "summary": "Создать запись о новой должности",
+        "operationId": "createAppointment",
+        "requestBody": {
+          "description": "Название должности, которое потом можно будет использовать в запросах, требующих `appointment_name`.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "example": {
+                  "name": "Technical Director"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Должность создана.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Неверные аргументы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "appointment"
+        ],
+        "summary": "Получить список всех существующих должностей",
+        "operationId": "readAppointment",
+        "responses": {
+          "200": {
+            "description": "Список должностей.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "name": "Technical Director"
+                  },
+                  {
+                    "name": "Intern developer"
+                  }
+                ]
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/task.json": {
+      "post": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Создать новую задачу.",
+        "operationId": "createTask",
+        "requestBody": {
+          "description": "В секции `skills` можно указать список умений и их уровень, необходимы для решения данной задачи. В секции `attachments` можно указать список дополнительных файлов/ссылок, прикрепляемых к задаче.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "text": {
+                    "type": "string"
+                  },
+                  "author_id": {
+                    "type": "integer"
+                  },
+                  "attachments": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "uri": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "uri"
+                      ]
+                    }
+                  },
+                  "skills": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "difficulty": {
+                          "type": "string",
+                          "description": "По умолчанию значение `medium`.",
+                          "enum": [
+                            "low",
+                            "medium",
+                            "hard",
+                            "unsolvable"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "name"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "title",
+                  "text",
+                  "author_id"
+                ]
+              },
+              "example": {
+                "title": "My ultra cool Go task from Google!",
+                "text": "Invert a binary tree.",
+                "author_id": 1,
+                "attachments": [
+                  {
+                    "uri": "https://leetcode.com/problems/invert-binary-tree/"
+                  },
+                  {
+                    "uri": "https://twitter.com/mxcl/status/608682016205344768"
+                  }
+                ],
+                "skills": [
+                  {
+                    "name": "algorithms",
+                    "difficulty": "low"
+                  },
+                  {
+                    "name": "any_lang",
+                    "difficulty": "low"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Задание создано.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Неверные аргументы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Получить список задач.",
+        "operationId": "readBaseTask",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "description": "Кроме того, можно передать массив id в теле запроса для получения некоторой выбоки задач.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "author_id",
+            "description": "Кроме того, можно передать массив author_id в теле запроса для получения задач нескольких авторов.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Список задач, соответстующий переданным аргументам.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "text": {
+                        "type": "string"
+                      },
+                      "author": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "photo_uri": {
+                            "type": "string"
+                          },
+                          "first_name": {
+                            "type": "string"
+                          },
+                          "last_name": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "require_skills": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "title": "My ultra cool Go task from Google!",
+                    "text": "Invert a binary tree.",
+                    "author": {
+                      "id": 1,
+                      "first_name": "Anton",
+                      "last_name": "Bulkin"
+                    },
+                    "require_skills": [
+                      "algorithms",
+                      "any_lang"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/task/{id}.json": {
+      "get": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Получить полную информацию о задаче.",
+        "operationId": "readFullTask",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Полная информация о задаче.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "author": {
+                      "$ref": "#/components/schemas/Author"
+                    },
+                    "solutions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "text": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          },
+                          "is_approved": {
+                            "type": "boolean"
+                          },
+                          "author": {
+                            "$ref": "#/components/schemas/Author"
+                          },
+                          "comments": {
+                            "type": "array",
+                            "items": {
+                              "$ref": "#/components/schemas/Comment"
+                            }
+                          },
+                          "attachments": {
+                            "type": "array",
+                            "items": {
+                              "$ref": "#/components/schemas/Attachment"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "require_skills": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "difficulty": {
+                            "type": "string",
+                            "enum": [
+                              "low",
+                              "medium",
+                              "hard",
+                              "unsolvable"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "comments": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Comment"
+                      }
+                    },
+                    "attachments": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Attachment"
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "id": 1,
+                  "title": "My ultra cool Go task from Google!",
+                  "text": "Invert a binary tree.",
+                  "created_at": "2019-07-01T11:22:33Z",
+                  "updated_at": "2019-07-01T14:15:16Z",
+                  "author": {
+                    "id": 1,
+                    "first_name": "Anton",
+                    "last_name": "Bulkin"
+                  },
+                  "solutions": [
+                    {
+                      "id": 1,
+                      "text": "Hello, this is my solution.",
+                      "created_at": "2019-07-12T22:11:00Z",
+                      "updated_at": "2019-07-13T17:18:19Z",
+                      "is_approved": true,
+                      "author": {
+                        "id": 2,
+                        "first_name": "Alexey",
+                        "last_name": "Kirichenko"
+                      },
+                      "comments": [
+                        {
+                          "id": 1,
+                          "text": "Yeah, cool solution.",
+                          "created_at": "2019-07-13T22:11:00Z",
+                          "updated_at": "2019-07-13T22:11:00Z",
+                          "author": {
+                            "id": 1,
+                            "first_name": "Anton",
+                            "last_name": "Bulkin"
+                          },
+                          "replies": [
+                            {
+                              "id": 2,
+                              "text": "Thanks a lot!",
+                              "created_at": "2019-07-13T22:31:00Z",
+                              "updated_at": "2019-07-13T22:31:00Z",
+                              "author": {
+                                "id": 2,
+                                "first_name": "Alexey",
+                                "last_name": "Alexey"
+                              }
+                            }
+                          ]
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "id": 3,
+                          "uri": "https://drive.google.com/drive/folders/my-cool-solution"
+                        }
+                      ]
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "id": 1,
+                      "uri": "https://leetcode.com/problems/invert-binary-tree/"
+                    },
+                    {
+                      "id": 2,
+                      "uri": "https://twitter.com/mxcl/status/608682016205344768"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Задача не найдена.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Обновить информацию о задаче.",
+        "operationId": "updateTask",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Позволяет обновить информацию о задачи, а также удалить и добавить требования к задаче.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "text": {
+                    "type": "string"
+                  },
+                  "attachments": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AttachmentUpdate"
+                    }
+                  },
+                  "skills": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/SkillUpdate"
+                    }
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              },
+              "example": {
+                "attachments": [
+                  {
+                    "type": "add",
+                    "uri": "https://stackoverflow.com/questions/36866035/how-to-refer-to-enclosing-type-definition-recursively-in-openapi-swagger"
+                  }
+                ],
+                "skills": [
+                  {
+                    "type": "add",
+                    "name": "swagger"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Задача обновлена.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Некорректные аргументы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Задача не найдена.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Удалить задачу.",
+        "operationId": "deleteTask",
+        "description": "Автоматически удалит связанные решения, комментарии и вложения.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Задача удалена",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Задача не найдена.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/task/{task_id}/solve.json": {
+      "post": {
+        "tags": [
+          "solution"
+        ],
+        "summary": "Создать возможнное решение задачи.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "operationId": "createSolution",
+        "requestBody": {
+          "description": "Информация о решении задачи.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  },
+                  "author_id": {
+                    "type": "integer"
+                  },
+                  "attachments": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "uri": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "uri"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "text",
+                  "author_id"
+                ]
+              },
+              "example": {
+                "text": "Hello, this is my solution.",
+                "author_id": 1,
+                "attachments": [
+                  {
+                    "uri": "https://drive.google.com/drive/folders/my-cool-solution"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Решение создано.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Неверные аргументы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/solution/{id}.json": {
+      "put": {
+        "tags": [
+          "solution"
+        ],
+        "summary": "Редактировать решение задачи.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "operationId": "updateSolution",
+        "requestBody": {
+          "description": "Новые данные о решении задачи.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "text": {
+                    "type": "string"
+                  },
+                  "is_approved": {
+                    "type": "boolean"
+                  },
+                  "attachments": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AttachmentUpdate"
+                    }
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              },
+              "example": {
+                "text": "Hello, this is my update solution.",
+                "author_id": 1,
+                "attachments": [
+                  {
+                    "type": "add",
+                    "uri": "https://drive.google.com/drive/folders/my-cool-updated-solution"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Решение обновлено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Неверные аргументы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Решение не найдено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "solution"
+        ],
+        "summary": "Удалить задачу.",
+        "operationId": "deleteSolution",
+        "description": "Автоматически удалит связанные комментарии и вложения.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Решение удалено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Решение не найдено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/task/{post_id}/comment.json": {
+      "post": {
+        "tags": [
+          "comment"
+        ],
+        "summary": "Оставить комментарий к задаче.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "post_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "operationId": "createTaskComment",
+        "requestBody": {
+          "description": "Содержание комментария.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Комментарий создан.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Неверные аргументы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/solution/{post_id}/comment.json": {
+      "post": {
+        "tags": [
+          "comment"
+        ],
+        "summary": "Оставить комментарий к решению.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "post_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "operationId": "createSolutionComment",
+        "requestBody": {
+          "description": "Содержание комментария.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Комментарий создан.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Неверные аргументы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/comment/{id}.json": {
+      "put": {
+        "tags": [
+          "comment"
+        ],
+        "summary": "Редактировать комментарий.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "operationId": "updateComment",
+        "requestBody": {
+          "description": "Новыое содержание комментария.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "text": {
+                    "type": "string"
+                  },
+                  "attachments": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AttachmentUpdate"
+                    }
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              },
+              "example": {
+                "text": "Some rewrited text.",
+                "attachments": [
+                  {
+                    "type": "add",
+                    "uri": "https://drive.google.com/drive/folders/my-cool-updated-solution"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Комментарий обновлен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Неверные аргументы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Комментарий не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "comment"
+        ],
+        "summary": "Удалить комментарий.",
+        "operationId": "deleteComment",
+        "description": "Автоматически удалит связанные вложения. При этом в ответах комментарий останется в иерархии с флагом `deleted`.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Комментарий удален.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Комментарий не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/task/{post_id}/vote.json": {
+      "post": {
+        "tags": [
+          "vote"
+        ],
+        "summary": "Проголосовать за задачу.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "post_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "operationId": "createTaskVote",
+        "requestBody": {
+          "description": "Описание голоса. Переголосование производится через этот же метод, нужно прислать необходимую `delta`. Значение голоса может менятся в значениях {-1, 0, 1}.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VoteCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Голос учтен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Неверные аргументы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/solution/{post_id}/vote.json": {
+      "post": {
+        "tags": [
+          "vote"
+        ],
+        "summary": "Проголосовать за решение.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "post_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "operationId": "createSolutionVote",
+        "requestBody": {
+          "description": "Описание голоса. Переголосование производится через этот же метод, нужно прислать необходимую `delta`. Значение голоса может менятся в значениях {-1, 0, 1}.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VoteCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Голос учтен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Неверные аргументы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/comment/{comment_id}/vote.json": {
+      "post": {
+        "tags": [
+          "vote"
+        ],
+        "summary": "Проголосовать за комментарий.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "comment_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "operationId": "createCommentVote",
+        "requestBody": {
+          "description": "Описание голоса. Переголосование производится через этот же метод, нужно прислать необходимую `delta`. Значение голоса может менятся в значениях {-1, 0, 1}.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VoteCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Голос учтен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Неверные аргументы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vacancy.json": {
+      "post": {
+        "tags": [
+          "vacancy"
+        ],
+        "summary": "Создать новую вакансию.",
+        "operationId": "createVacancy",
+        "requestBody": {
+          "description": "Секция `skills` позволяет указать необходимые умения с уровнем владения. По-умолчанию уровень владения равен `medium`.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string"
+                  },
+                  "priority": {
+                    "type": "string",
+                    "description": "Влият на место в выборке вакансий.",
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ]
+                  },
+                  "department_name": {
+                    "type": "string"
+                  },
+                  "appointment_name": {
+                    "type": "string"
+                  },
+                  "skills": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/SkillCreate"
+                    }
+                  }
+                },
+                "required": [
+                  "description",
+                  "department_name",
+                  "appointment_name"
+                ]
+              },
+              "example": {
+                "description": "New Golang vacancy.",
+                "priority": "high",
+                "department_name": "Advertising: Go development team",
+                "appointment_name": "Senior developer",
+                "skills": [
+                  {
+                    "name": "golang",
+                    "difficulty": "hard"
+                  },
+                  {
+                    "name": "algorithms"
+                  },
+                  {
+                    "name": "mysql"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Вакансия создана.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Неверные аргументы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "vacancy"
+        ],
+        "summary": "Получить список вакансий.",
+        "operationId": "readBaseVacancy",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Кроме того, можно передать массив id в теле запроса, чтобы получить информацию о нескольких вакансиях."
+          },
+          {
+            "in": "query",
+            "name": "department_name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Кроме того, можно передать массив department_name в теле запроса, чтобы получить вакансиях в нескольких отделах."
+          },
+          {
+            "in": "query",
+            "name": "appointment_name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Кроме того, можно передать массив appointment_name в теле запроса, чтобы получить вакансиях на нескольких должностях."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Список вакансий отсортированный следующим образом. Сначала идут открытые вакансии, далее вакансии поставленные на удержание, далее закрытые вакансии. Внутри групп вакансии отсортированы по приоритету.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "priority": {
+                        "type": "string",
+                        "enum": [
+                          "low",
+                          "medium",
+                          "high"
+                        ]
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "active",
+                          "paused",
+                          "closed"
+                        ]
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      },
+                      "department_name": {
+                        "type": "string"
+                      },
+                      "appointment_name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "description": "Some one pls!!!",
+                    "priority": "high",
+                    "status": "active",
+                    "created_at": "2020-06-07T18:29:15Z",
+                    "updated_at": "2020-06-07T22:31:55Z",
+                    "department_name": "Advertising: Go development team",
+                    "appointment_name": "Middle developer"
+                  }
+                ]
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vacancy/{id}.json": {
+      "get": {
+        "tags": [
+          "vacancy"
+        ],
+        "summary": "Получить полную информацию о вакансии.",
+        "operationId": "readFullVacancy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Полная информация о вакансии, показаны прошедшие и назначенные собседования.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "priority": {
+                      "type": "string",
+                      "enum": [
+                        "low",
+                        "medium",
+                        "high"
+                      ]
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "active",
+                        "paused",
+                        "closed"
+                      ]
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "department_name": {
+                      "type": "string"
+                    },
+                    "appointment_name": {
+                      "type": "string"
+                    },
+                    "require_skills": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "difficulty": {
+                            "type": "string",
+                            "enum": [
+                              "low",
+                              "medium",
+                              "hard",
+                              "unsolvable"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "interviews": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "planned_date": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "waiting",
+                              "canceled",
+                              "completed"
+                            ]
+                          },
+                          "person": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "first_name": {
+                                "type": "string"
+                              },
+                              "last_name": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "interviewer": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "first_name": {
+                                "type": "string"
+                              },
+                              "last_name": {
+                                "type": "string"
+                              },
+                              "email": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Вакансия не найдена.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "vacancy"
+        ],
+        "summary": "Обновить информацию о вакансии",
+        "operationId": "updateVacancy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Позволяет изменить основные поля, добавить и удалить требования по умениям.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string"
+                  },
+                  "priority": {
+                    "type": "string",
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ]
+                  },
+                  "pause": {
+                    "type": "boolean"
+                  },
+                  "department_name": {
+                    "type": "string"
+                  },
+                  "appointment_name": {
+                    "type": "string"
+                  },
+                  "skills": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/SkillUpdate"
+                    }
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              },
+              "example": {
+                "description": "New description",
+                "priority": "low",
+                "pause": true,
+                "skills": [
+                  {
+                    "type": "add",
+                    "name": "redis"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Вакансия обновлена.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Некорректные аргументы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Вакансия не найдена.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vacancy/{id}/close.json": {
+      "put": {
+        "tags": [
+          "vacancy"
+        ],
+        "summary": "Закрыть вакансию.",
+        "operationId": "closeVacancy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Вакансия обновлена.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Вакансия не найдена.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/interview.json": {
+      "post": {
+        "tags": [
+          "interview"
+        ],
+        "summary": "Назначить новое интервью.",
+        "operationId": "createInterview",
+        "requestBody": {
+          "description": "Назначает интервью с кандидатом на заданную дату.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "vacancy_id": {
+                    "type": "integer"
+                  },
+                  "person_id": {
+                    "type": "integer"
+                  },
+                  "planned_date": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "vacancy_id",
+                  "person_id",
+                  "planned_date"
+                ],
+                "example": {
+                  "vacancy_id": 1,
+                  "person_id": 2,
+                  "planned_date": "2020-06-07T10:00:00Z"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Интервью назанчено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Неверные аргументы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/interview/{id}.json": {
+      "get": {
+        "tags": [
+          "interview"
+        ],
+        "summary": "Получить полную информацию о интервью.",
+        "operationId": "readFullInterview",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "В случае, если интервью уже завершилось будут переданы результаты кандидата, иначе только базовая информация.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "comment": {
+                      "type": "string"
+                    },
+                    "planned_date": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "waiting",
+                        "canceled",
+                        "completed"
+                      ]
+                    },
+                    "total_score": {
+                      "type": "integer"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "person": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "first_name": {
+                          "type": "string"
+                        },
+                        "last_name": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "vacancy": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "department_name": {
+                          "type": "string"
+                        },
+                        "appointement_name": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "interviewer": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "first_name": {
+                          "type": "string"
+                        },
+                        "last_name": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "checks": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "task_id": {
+                            "type": "integer"
+                          },
+                          "skill_name": {
+                            "type": "string"
+                          },
+                          "comment": {
+                            "type": "string"
+                          },
+                          "score": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "id": 1,
+                  "comment": "Nice interview",
+                  "planned_date": "2020-06-13T13:00:00Z",
+                  "status": "completed",
+                  "total_score": 99,
+                  "created_at": "2020-06-08T18:40:56Z",
+                  "updated_at": "2020-06-08T23:19:56Z",
+                  "person": {
+                    "id": 6,
+                    "first_name": "Anton",
+                    "last_name": "Bulkin"
+                  },
+                  "vacancy": {
+                    "id": 3,
+                    "department_name": "Advertising: Rust development team",
+                    "appointement_name": "Middle developer"
+                  },
+                  "interviewer": {
+                    "id": 1,
+                    "first_name": "Daniil",
+                    "last_name": "Gavrilovsky",
+                    "email": "d.gavrilovsky@corp.example.com"
+                  },
+                  "checks": [
+                    {
+                      "task_id": 1,
+                      "skill_name": "go",
+                      "comment": "Good job!",
+                      "score": 95
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Интервью не найдено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "interview"
+        ],
+        "summary": "Обновить информацию о интервью.",
+        "operationId": "updateInterview",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Для незавершенного интервью допустимо обновить только базовые поля. В случае завершенного интервью можно менять комментарии и оценки, добавлять и убирать проверки задач.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "planned_time": {
+                    "type": "string"
+                  },
+                  "comment": {
+                    "type": "string"
+                  },
+                  "total_score": {
+                    "type": "integer",
+                    "description": "Value in [0, 100]"
+                  },
+                  "interviewer_id": {
+                    "type": "integer"
+                  },
+                  "checks": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "add",
+                            "delete"
+                          ]
+                        },
+                        "task_id": {
+                          "type": "integer"
+                        },
+                        "skill_name": {
+                          "type": "string"
+                        },
+                        "comment": {
+                          "type": "string"
+                        },
+                        "score": {
+                          "type": "integer",
+                          "description": "Value in [0, 100]"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "task_id",
+                        "skill_name"
+                      ]
+                    }
+                  }
+                }
+              },
+              "example": {
+                "comment": "Lets add 1 point",
+                "total_score": 100,
+                "checks": [
+                  {
+                    "type": "add",
+                    "task_id": 2,
+                    "skill_name": "redis",
+                    "comment": "Additional point",
+                    "score": 100
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Интервью обновлено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Некорректные аргументы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Интервью не найдено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "interview"
+        ],
+        "summary": "Отменяет назначенное интервью.",
+        "operationId": "cancelInterview",
+        "description": "Позволяет отменить интервью, которое ещё не состоялось",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Интервью отменено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Интервью не найдено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/interview/{id}/complete.json": {
+      "put": {
+        "tags": [
+          "interview"
+        ],
+        "summary": "Внести результаты интервью.",
+        "operationId": "comleteInterview",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Переводит интерью в статус завершенного, сохраняет результаты.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "interviewer_id": {
+                    "type": "integer"
+                  },
+                  "comment": {
+                    "type": "string"
+                  },
+                  "total_score": {
+                    "type": "integer",
+                    "description": "Value in [0, 100]"
+                  },
+                  "checks": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "task_id": {
+                          "type": "integer"
+                        },
+                        "skill_name": {
+                          "type": "string"
+                        },
+                        "comment": {
+                          "type": "string"
+                        },
+                        "score": {
+                          "type": "integer",
+                          "description": "Value in [0, 100]"
+                        }
+                      },
+                      "required": [
+                        "task_id",
+                        "skill_name",
+                        "score"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "interviewer_id",
+                  "comment",
+                  "total_score"
+                ]
+              },
+              "example": {
+                "comment": "Bad interview",
+                "total_score": 30,
+                "interviewer_id": 1,
+                "checks": [
+                  {
+                    "task_id": 1,
+                    "skill_name": "go",
+                    "comment": "Bad go knowledge",
+                    "score": 20
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Интервью завершено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectID"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Некорректные аргументы.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Интервью не найдено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Интервью уже завершено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка сервера.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "VoteCreate": {
+        "type": "object",
+        "properties": {
+          "employee_id": {
+            "type": "integer"
+          },
+          "delta": {
+            "type": "integer",
+            "enum": [
+              -1,
+              1
+            ]
+          }
+        },
+        "required": [
+          "employee_id",
+          "delta"
+        ],
+        "example": {
+          "employee_id": 1,
+          "delta": 1
+        }
+      },
+      "CommentCreate": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "author_id": {
+            "type": "integer"
+          },
+          "parent": {
+            "type": "integer"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "uri": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "uri"
+              ]
+            }
+          }
+        },
+        "required": [
+          "text",
+          "author_id"
+        ],
+        "example": {
+          "text": "Thank you for your solution.",
+          "author_id": 1,
+          "parent": 123,
+          "attachments": [
+            {
+              "uri": "https://drive.google.com/drive/folders/some-useful-attachment"
+            }
+          ]
+        }
+      },
+      "Comment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "text": {
+            "type": "string"
+          },
+          "deleted": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          },
+          "author": {
+            "$ref": "#/components/schemas/Author"
+          },
+          "replies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Comment"
+            }
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Attachment"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "deleted"
+        ]
+      },
+      "Attachment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "uri": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "uri"
+        ]
+      },
+      "AttachmentUpdate": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "add",
+              "delete"
+            ]
+          },
+          "id": {
+            "type": "integer"
+          },
+          "uri": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "id"
+        ]
+      },
+      "Author": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "photo_uri": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "first_name",
+          "last_name"
+        ]
+      },
+      "SkillCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "difficulty": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "hard",
+              "unsolvable"
+            ]
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "SkillUpdate": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "add",
+              "delete"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "difficulty": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "hard",
+              "unsolvable"
+            ]
+          }
+        },
+        "required": [
+          "type",
+          "name"
+        ]
+      },
+      "ObjectID": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "Result": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "string",
+            "example": "OK"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      }
+    }
+  }
+}

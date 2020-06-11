@@ -1,0 +1,11 @@
+logging:
+    file: 'userd.log'
+    level: 'debug'
+http:
+    host: ''
+    port: 8888
+database:
+    host: 'database:3306'
+    user: 'root'
+    password: ''
+    database: 'tenjin'

@@ -1,0 +1,11 @@
+logging:
+    file: './log/userd/userd.log'
+    level: 'debug'
+http:
+    host: '127.0.0.1'
+    port: 9999
+database:
+    host: '127.0.0.1:5706'
+    user: 'root'
+    password: ''
+    database: 'tenjin'

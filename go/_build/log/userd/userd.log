@@ -1,0 +1,435 @@
+{"level":"INFO","time":"2020-06-09T23:12:12.180+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-09T23:12:34.169+0300","message":"server: GET /v1/person.json"}
+{"level":"INFO","time":"2020-06-09T23:12:34.304+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) timing: 134.603963ms"}
+{"level":"INFO","time":"2020-06-09T23:12:34.304+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-09T23:12:43.410+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-09T23:12:43.413+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-09T23:12:43.413+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-09T23:59:52.594+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-09T23:59:57.466+0300","message":"server: GET /v1/person.json"}
+{"level":"INFO","time":"2020-06-09T23:59:57.609+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) timing: 142.787327ms"}
+{"level":"INFO","time":"2020-06-09T23:59:57.610+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T00:00:01.649+0300","message":"server: GET /v1/person.json"}
+{"level":"INFO","time":"2020-06-10T00:00:01.657+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) timing: 7.292549ms"}
+{"level":"INFO","time":"2020-06-10T00:00:01.657+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T00:00:57.139+0300","message":"server: GET /v1/person.json"}
+{"level":"INFO","time":"2020-06-10T00:00:57.158+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) timing: 18.488356ms"}
+{"level":"INFO","time":"2020-06-10T00:00:57.158+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T00:01:03.281+0300","message":"server: GET /v1/person.json"}
+{"level":"INFO","time":"2020-06-10T00:01:03.286+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) timing: 5.247475ms"}
+{"level":"INFO","time":"2020-06-10T00:01:03.286+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T00:01:10.519+0300","message":"server: GET /v1/person.json"}
+{"level":"ERROR","time":"2020-06-10T00:01:10.520+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) failed: dial tcp 127.0.0.1:5706: connect: connection refused"}
+{"level":"INFO","time":"2020-06-10T00:01:10.520+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) timing: 853.366µs"}
+{"level":"ERROR","time":"2020-06-10T00:01:10.520+0300","message":"can not read persons: dial tcp 127.0.0.1:5706: connect: connection refused"}
+{"level":"ERROR","time":"2020-06-10T00:01:10.521+0300","message":"error in processor: dial tcp 127.0.0.1:5706: connect: connection refused"}
+{"level":"INFO","time":"2020-06-10T00:01:10.521+0300","message":"server: done 500"}
+{"level":"INFO","time":"2020-06-10T00:01:12.110+0300","message":"server: GET /v1/person.json"}
+{"level":"ERROR","time":"2020-06-10T00:01:12.111+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) failed: dial tcp 127.0.0.1:5706: connect: connection refused"}
+{"level":"INFO","time":"2020-06-10T00:01:12.111+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) timing: 623.686µs"}
+{"level":"ERROR","time":"2020-06-10T00:01:12.111+0300","message":"can not read persons: dial tcp 127.0.0.1:5706: connect: connection refused"}
+{"level":"ERROR","time":"2020-06-10T00:01:12.111+0300","message":"error in processor: dial tcp 127.0.0.1:5706: connect: connection refused"}
+{"level":"INFO","time":"2020-06-10T00:01:12.111+0300","message":"server: done 500"}
+{"level":"INFO","time":"2020-06-10T00:01:12.866+0300","message":"server: GET /v1/person.json"}
+{"level":"ERROR","time":"2020-06-10T00:01:12.866+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) failed: dial tcp 127.0.0.1:5706: connect: connection refused"}
+{"level":"INFO","time":"2020-06-10T00:01:12.866+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) timing: 368.07µs"}
+{"level":"ERROR","time":"2020-06-10T00:01:12.866+0300","message":"can not read persons: dial tcp 127.0.0.1:5706: connect: connection refused"}
+{"level":"ERROR","time":"2020-06-10T00:01:12.866+0300","message":"error in processor: dial tcp 127.0.0.1:5706: connect: connection refused"}
+{"level":"INFO","time":"2020-06-10T00:01:12.866+0300","message":"server: done 500"}
+{"level":"INFO","time":"2020-06-10T00:01:29.698+0300","message":"server: GET /v1/person.json"}
+{"level":"INFO","time":"2020-06-10T00:01:29.796+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) timing: 98.116657ms"}
+{"level":"INFO","time":"2020-06-10T00:01:29.797+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T00:01:58.624+0300","message":"server: GET /v1/person.json"}
+{"level":"INFO","time":"2020-06-10T00:01:58.627+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) timing: 2.721155ms"}
+{"level":"INFO","time":"2020-06-10T00:01:58.627+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T00:03:18.972+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T00:03:18.973+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T00:03:18.973+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T00:06:27.008+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T00:06:30.245+0300","message":"server: GET /v1/person.json"}
+{"level":"INFO","time":"2020-06-10T00:06:30.257+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) timing: 11.299751ms"}
+{"level":"INFO","time":"2020-06-10T00:06:30.257+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T00:08:43.999+0300","message":"server: GET /v1/person.json"}
+{"level":"INFO","time":"2020-06-10T00:08:44.003+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) timing: 4.693104ms"}
+{"level":"INFO","time":"2020-06-10T00:08:44.004+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T00:09:03.454+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T00:09:03.454+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T00:09:03.454+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T00:09:04.647+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T00:09:32.467+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T00:09:32.468+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T00:09:32.468+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T00:09:40.439+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T00:09:59.390+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T00:09:59.391+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T00:09:59.391+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T00:10:00.171+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T00:10:08.231+0300","message":"server: GET /person.json"}
+{"level":"INFO","time":"2020-06-10T00:10:08.243+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) timing: 11.289093ms"}
+{"level":"INFO","time":"2020-06-10T00:10:08.243+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T00:10:23.622+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T00:10:23.622+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T00:10:23.622+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T00:10:24.605+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T00:10:36.193+0300","message":"server: GET /v1/person.json"}
+{"level":"INFO","time":"2020-06-10T00:10:36.210+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) timing: 16.223701ms"}
+{"level":"INFO","time":"2020-06-10T00:10:36.211+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T00:46:57.081+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T00:46:57.083+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T00:46:57.083+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T00:47:08.533+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T00:47:40.672+0300","message":"server: POST /v1/person.json"}
+{"level":"INFO","time":"2020-06-10T00:47:40.741+0300","message":"Query SELECT id, name FROM department WHERE (`name` IN ('Advertising: Go development team')) timing: 66.632951ms"}
+{"level":"INFO","time":"2020-06-10T00:47:40.751+0300","message":"Query SELECT id, name FROM appointement WHERE (`name` IN ('Middle developer')) timing: 76.655972ms"}
+{"level":"ERROR","time":"2020-06-10T00:47:40.751+0300","message":"can not resolve args: HTTP [400]: department_name unknown"}
+{"level":"INFO","time":"2020-06-10T00:47:40.751+0300","message":"server: done 400"}
+{"level":"INFO","time":"2020-06-10T00:48:12.546+0300","message":"server: GET /v1/person.json"}
+{"level":"INFO","time":"2020-06-10T00:48:12.615+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) timing: 68.934223ms"}
+{"level":"INFO","time":"2020-06-10T00:48:12.616+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T00:48:23.369+0300","message":"server: GET /v1/person.json"}
+{"level":"INFO","time":"2020-06-10T00:48:23.373+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) timing: 3.899009ms"}
+{"level":"INFO","time":"2020-06-10T00:48:23.373+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T00:48:35.236+0300","message":"server: GET /v1/person.json"}
+{"level":"INFO","time":"2020-06-10T00:48:35.242+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) timing: 6.1028ms"}
+{"level":"INFO","time":"2020-06-10T00:48:35.242+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T00:49:00.124+0300","message":"server: GET /v1/person.json"}
+{"level":"INFO","time":"2020-06-10T00:49:00.127+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) timing: 2.502159ms"}
+{"level":"INFO","time":"2020-06-10T00:49:00.127+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T00:49:04.228+0300","message":"server: POST /v1/person.json"}
+{"level":"INFO","time":"2020-06-10T00:49:04.232+0300","message":"Query SELECT id, name FROM department WHERE (`name` IN ('Advertising: Go development team')) timing: 3.489048ms"}
+{"level":"INFO","time":"2020-06-10T00:49:04.232+0300","message":"Query SELECT id, name FROM appointement WHERE (`name` IN ('Middle developer')) timing: 3.680017ms"}
+{"level":"ERROR","time":"2020-06-10T00:49:04.232+0300","message":"can not resolve args: HTTP [400]: department_name unknown"}
+{"level":"INFO","time":"2020-06-10T00:49:04.232+0300","message":"server: done 400"}
+{"level":"INFO","time":"2020-06-10T00:50:07.996+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T00:50:07.996+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T00:50:07.996+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T00:50:16.857+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T00:50:51.381+0300","message":"server: POST /v1/person.json"}
+{"level":"INFO","time":"2020-06-10T00:50:51.431+0300","message":"Query SELECT id, name FROM appointement WHERE (`name` IN ('Middle developer')) timing: 48.229407ms"}
+{"level":"INFO","time":"2020-06-10T00:50:51.437+0300","message":"Query SELECT id, name FROM department WHERE (`name` IN ('Advertising: Go development team')) timing: 54.154179ms"}
+{"level":"ERROR","time":"2020-06-10T00:50:51.437+0300","message":"can not resolve args: HTTP [400]: appointment_name unknown"}
+{"level":"INFO","time":"2020-06-10T00:50:51.437+0300","message":"server: done 400"}
+{"level":"INFO","time":"2020-06-10T00:51:17.438+0300","message":"server: POST /v1/person.json"}
+{"level":"INFO","time":"2020-06-10T00:51:17.443+0300","message":"Query SELECT id, name FROM appointement WHERE (`name` IN ('Middle developer')) timing: 4.714155ms"}
+{"level":"INFO","time":"2020-06-10T00:51:17.443+0300","message":"Query SELECT id, name FROM department WHERE (`name` IN ('Advertising: Go development team')) timing: 4.781923ms"}
+{"level":"ERROR","time":"2020-06-10T00:51:17.443+0300","message":"can not resolve args: HTTP [400]: appointment_name unknown"}
+{"level":"INFO","time":"2020-06-10T00:51:17.443+0300","message":"server: done 400"}
+{"level":"INFO","time":"2020-06-10T00:52:18.958+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T00:52:18.959+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T00:52:18.959+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T00:52:28.216+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T00:52:32.903+0300","message":"server: POST /v1/person.json"}
+{"level":"INFO","time":"2020-06-10T00:52:32.915+0300","message":"Query SELECT id, name FROM department WHERE (`name` IN ('Advertising: Go development team')) timing: 11.242673ms"}
+{"level":"INFO","time":"2020-06-10T00:52:32.916+0300","message":"Query SELECT id, name FROM appointement WHERE (`name` IN ('Middle developer')) timing: 12.068103ms"}
+{"level":"INFO","time":"2020-06-10T00:52:32.922+0300","message":"Query INSERT INTO `person` (`photo_uri`,`first_name`,`last_name`) VALUES ('','Anton','Bulkin') timing: 3.089843ms"}
+{"level":"INFO","time":"2020-06-10T00:52:32.939+0300","message":"Query INSERT INTO `employee` (`person_id`,`email`,`password`,`hired_at`) VALUES (9,'a.bulkin@corp.example.com',?,'2019-07-01 10:00:00.000000') timing: 16.300493ms"}
+{"level":"INFO","time":"2020-06-10T00:52:32.963+0300","message":"Query INSERT INTO `works_in` (`employee_id`,`department_id`,`appointement_id`,`date_from`) VALUES (9,1,3,'2019-07-01 10:00:00.000000') timing: 24.536733ms"}
+{"level":"INFO","time":"2020-06-10T00:52:32.984+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T00:52:43.343+0300","message":"server: GET /v1/person.json"}
+{"level":"INFO","time":"2020-06-10T00:52:43.353+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` WHERE (`p`.`status` != 3) timing: 9.483589ms"}
+{"level":"INFO","time":"2020-06-10T00:52:43.353+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T00:52:57.884+0300","message":"server: GET /v1/person.json"}
+{"level":"INFO","time":"2020-06-10T00:52:57.892+0300","message":"Query SELECT w.employee_id AS employee_id, d.name AS department_name, a.name AS appointment_name, w.date_from AS date_from, w.date_to AS date_to, w.date_to IS NULL AS working_now FROM `works_in` AS `w` JOIN `department` AS `d` ON w.department_id=d.id JOIN `appointement` AS `a` ON w.appointement_id=a.id ORDER BY working_now DESC, date_from DESC timing: 7.443513ms"}
+{"level":"INFO","time":"2020-06-10T00:52:57.892+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` JOIN `employee` AS `e` ON p.id=e.person_id WHERE (`p`.`status` != 3) timing: 7.49596ms"}
+{"level":"INFO","time":"2020-06-10T00:52:57.892+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T00:53:25.669+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T00:53:25.669+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T00:53:25.669+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T01:14:16.168+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T01:14:18.362+0300","message":"server: GET /v1/person/1.json"}
+{"level":"INFO","time":"2020-06-10T01:14:18.722+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name, CAST(p.status as unsigned) AS status, p.created_at, p.updated_at, e.email, e.hired_at FROM `person` AS `p` JOIN `employee` AS `e` ON p.id=e.person_id WHERE (`p`.`status` != 3) AND (`p`.`id` IN (1)) timing: 359.844332ms"}
+{"level":"INFO","time":"2020-06-10T01:14:18.729+0300","message":"Query SELECT w.employee_id AS employee_id, d.name AS department_name, a.name AS appointment_name, w.date_from AS date_from, w.date_to AS date_to, w.date_to IS NULL AS working_now FROM `works_in` AS `w` JOIN `department` AS `d` ON w.department_id=d.id JOIN `appointement` AS `a` ON w.appointement_id=a.id WHERE (`employee_id` IN (1)) ORDER BY working_now DESC, date_from DESC timing: 366.997184ms"}
+{"level":"INFO","time":"2020-06-10T01:14:18.730+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T01:40:56.210+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T01:40:56.212+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T01:40:56.212+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T01:40:57.470+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T01:56:30.247+0300","message":"server: GET /v1/person/9.json"}
+{"level":"INFO","time":"2020-06-10T01:56:30.611+0300","message":"Query SELECT w.employee_id AS employee_id, d.name AS department_name, a.name AS appointment_name, w.date_from AS date_from, w.date_to AS date_to, w.date_to IS NULL AS working_now FROM `works_in` AS `w` JOIN `department` AS `d` ON w.department_id=d.id JOIN `appointement` AS `a` ON w.appointement_id=a.id WHERE (`employee_id` IN (9)) ORDER BY working_now DESC, date_from DESC timing: 363.891791ms"}
+{"level":"INFO","time":"2020-06-10T01:56:30.628+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name, CAST(p.status as unsigned) AS status, p.created_at, p.updated_at, e.email, e.hired_at FROM `person` AS `p` JOIN `employee` AS `e` ON p.id=e.person_id WHERE (`p`.`status` != 3) AND (`p`.`id` IN (9)) timing: 381.218706ms"}
+{"level":"INFO","time":"2020-06-10T01:56:30.629+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T01:57:03.580+0300","message":"server: PUT /v1/person/9.json"}
+{"level":"ERROR","time":"2020-06-10T01:57:03.580+0300","message":"server: can not parse args json: cannot unmarshal array into Go struct field Arguments.work of type update.WorkArguments"}
+{"level":"INFO","time":"2020-06-10T01:57:03.580+0300","message":"server: done 400"}
+{"level":"INFO","time":"2020-06-10T01:57:49.978+0300","message":"server: PUT /v1/person/9.json"}
+{"level":"ERROR","time":"2020-06-10T01:57:49.978+0300","message":"server: can not parse args json: cannot unmarshal array into Go struct field Arguments.work of type update.WorkArguments"}
+{"level":"INFO","time":"2020-06-10T01:57:49.978+0300","message":"server: done 400"}
+{"level":"INFO","time":"2020-06-10T01:58:43.643+0300","message":"server: PUT /v1/person/9.json"}
+{"level":"ERROR","time":"2020-06-10T01:58:43.644+0300","message":"server: can not parse args json: cannot unmarshal array into Go struct field Arguments.work of type update.WorkArguments"}
+{"level":"INFO","time":"2020-06-10T01:58:43.644+0300","message":"server: done 400"}
+{"level":"INFO","time":"2020-06-10T01:58:57.672+0300","message":"server: PUT /v1/person/9.json"}
+{"level":"INFO","time":"2020-06-10T01:58:57.754+0300","message":"Query SELECT id, name FROM department WHERE (`name` IN ('Advertising: Rust development team')) timing: 81.115591ms"}
+{"level":"INFO","time":"2020-06-10T01:58:57.771+0300","message":"Query SELECT id, name FROM appointement WHERE (`name` IN ('Middle developer')) timing: 97.887004ms"}
+{"level":"ERROR","time":"2020-06-10T01:58:57.771+0300","message":"can not resolve args: HTTP [400]: appointment_name unknown"}
+{"level":"INFO","time":"2020-06-10T01:58:57.771+0300","message":"server: done 400"}
+{"level":"INFO","time":"2020-06-10T01:59:13.518+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T01:59:13.518+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T01:59:13.518+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T01:59:24.736+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T01:59:35.147+0300","message":"server: PUT /v1/person/9.json"}
+{"level":"INFO","time":"2020-06-10T01:59:35.161+0300","message":"Query SELECT id, name FROM department WHERE (`name` IN ('Advertising: Rust development team')) timing: 13.085902ms"}
+{"level":"INFO","time":"2020-06-10T01:59:35.164+0300","message":"Query SELECT id, name FROM appointement WHERE (`name` IN ('Middle developer')) timing: 16.235092ms"}
+{"level":"INFO","time":"2020-06-10T01:59:35.247+0300","message":"Query UPDATE `person` SET `photo_uri` = 'example.com/photo/2', `updated_at` = '2020-06-09 22:59:35.167707' WHERE (`id` = 9) timing: 80.100621ms"}
+{"level":"INFO","time":"2020-06-10T01:59:35.283+0300","message":"Query UPDATE `works_in` SET `date_to` = '2020-06-09 22:59:35.147732' WHERE (`employee_id` IN (9)) AND (`department_id` IN (2)) AND (`appointement_id` IN (3)) timing: 35.559445ms"}
+{"level":"INFO","time":"2020-06-10T01:59:35.290+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T01:59:39.870+0300","message":"server: GET /v1/person/9.json"}
+{"level":"INFO","time":"2020-06-10T01:59:39.891+0300","message":"Query SELECT w.employee_id AS employee_id, d.name AS department_name, a.name AS appointment_name, w.date_from AS date_from, w.date_to AS date_to, w.date_to IS NULL AS working_now FROM `works_in` AS `w` JOIN `department` AS `d` ON w.department_id=d.id JOIN `appointement` AS `a` ON w.appointement_id=a.id WHERE (`employee_id` IN (9)) ORDER BY working_now DESC, date_from DESC timing: 20.643123ms"}
+{"level":"INFO","time":"2020-06-10T01:59:39.904+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name, CAST(p.status as unsigned) AS status, p.created_at, p.updated_at, e.email, e.hired_at FROM `person` AS `p` JOIN `employee` AS `e` ON p.id=e.person_id WHERE (`p`.`status` != 3) AND (`p`.`id` IN (9)) timing: 32.478794ms"}
+{"level":"INFO","time":"2020-06-10T01:59:39.904+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T02:02:51.895+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T02:02:51.895+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T02:02:51.895+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T02:03:57.724+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T02:04:10.127+0300","message":"server: GET /v1/person/9.json"}
+{"level":"INFO","time":"2020-06-10T02:04:10.222+0300","message":"Query SELECT w.employee_id AS employee_id, d.name AS department_name, a.name AS appointment_name, w.date_from AS date_from, w.date_to AS date_to, w.date_to IS NULL AS working_now FROM `works_in` AS `w` JOIN `department` AS `d` ON w.department_id=d.id JOIN `appointement` AS `a` ON w.appointement_id=a.id WHERE (`employee_id` IN (9)) ORDER BY working_now DESC, date_from DESC timing: 93.721959ms"}
+{"level":"INFO","time":"2020-06-10T02:04:10.227+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name, CAST(p.status as unsigned) AS status, p.created_at, p.updated_at, e.email, e.hired_at FROM `person` AS `p` JOIN `employee` AS `e` ON p.id=e.person_id WHERE (`p`.`status` != 3) AND (`p`.`id` IN (9)) timing: 99.292416ms"}
+{"level":"INFO","time":"2020-06-10T02:04:10.228+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T02:04:21.302+0300","message":"server: PUT /v1/person/9.json"}
+{"level":"INFO","time":"2020-06-10T02:04:21.311+0300","message":"Query SELECT id, name FROM appointement WHERE (`name` IN ('Middle developer')) timing: 8.591647ms"}
+{"level":"INFO","time":"2020-06-10T02:04:21.311+0300","message":"Query SELECT id, name FROM department WHERE (`name` IN ('Advertising: Rust development team')) timing: 8.4852ms"}
+{"level":"INFO","time":"2020-06-10T02:04:21.326+0300","message":"Query UPDATE `person` SET `photo_uri` = 'example.com/photo/2', `updated_at` = '2020-06-09 23:04:21.315189' WHERE (`id` = 9) timing: 11.601747ms"}
+{"level":"INFO","time":"2020-06-10T02:04:21.346+0300","message":"Query UPDATE `works_in` SET `date_to` = '2020-06-09 23:04:21.302553' WHERE (`employee_id` = 9) AND (`department_id` = 2) AND (`appointement_id` = 3) timing: 19.662337ms"}
+{"level":"ERROR","time":"2020-06-10T02:04:21.362+0300","message":"can not update person: no rows affected"}
+{"level":"ERROR","time":"2020-06-10T02:04:21.362+0300","message":"error in processor: no rows affected"}
+{"level":"INFO","time":"2020-06-10T02:04:21.362+0300","message":"server: done 404"}
+{"level":"INFO","time":"2020-06-10T02:04:28.327+0300","message":"server: PUT /v1/person/9.json"}
+{"level":"INFO","time":"2020-06-10T02:04:28.341+0300","message":"Query SELECT id, name FROM department WHERE (`name` IN ('Advertising: Rust development team')) timing: 11.183812ms"}
+{"level":"INFO","time":"2020-06-10T02:04:28.341+0300","message":"Query SELECT id, name FROM appointement WHERE (`name` IN ('Middle developer')) timing: 11.396283ms"}
+{"level":"INFO","time":"2020-06-10T02:04:28.354+0300","message":"Query UPDATE `person` SET `photo_uri` = 'example.com/photo/2', `updated_at` = '2020-06-09 23:04:28.348694' WHERE (`id` = 9) timing: 5.601726ms"}
+{"level":"INFO","time":"2020-06-10T02:04:28.357+0300","message":"Query INSERT INTO `works_in` (`employee_id`,`department_id`,`appointement_id`,`date_from`) VALUES (9,2,3,'2020-07-01 00:00:00.000000') timing: 3.145417ms"}
+{"level":"INFO","time":"2020-06-10T02:04:28.380+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T02:04:31.824+0300","message":"server: GET /v1/person/9.json"}
+{"level":"INFO","time":"2020-06-10T02:04:31.913+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name, CAST(p.status as unsigned) AS status, p.created_at, p.updated_at, e.email, e.hired_at FROM `person` AS `p` JOIN `employee` AS `e` ON p.id=e.person_id WHERE (`p`.`status` != 3) AND (`p`.`id` IN (9)) timing: 87.469271ms"}
+{"level":"INFO","time":"2020-06-10T02:04:31.914+0300","message":"Query SELECT w.employee_id AS employee_id, d.name AS department_name, a.name AS appointment_name, w.date_from AS date_from, w.date_to AS date_to, w.date_to IS NULL AS working_now FROM `works_in` AS `w` JOIN `department` AS `d` ON w.department_id=d.id JOIN `appointement` AS `a` ON w.appointement_id=a.id WHERE (`employee_id` IN (9)) ORDER BY working_now DESC, date_from DESC timing: 88.103536ms"}
+{"level":"INFO","time":"2020-06-10T02:04:31.914+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T02:05:41.562+0300","message":"server: PUT /v1/person/9.json"}
+{"level":"INFO","time":"2020-06-10T02:05:41.591+0300","message":"Query SELECT id, name FROM department WHERE (`name` IN ('Advertising: Rust development team')) timing: 28.855772ms"}
+{"level":"INFO","time":"2020-06-10T02:05:41.596+0300","message":"Query SELECT id, name FROM appointement WHERE (`name` IN ('Middle developer')) timing: 34.342084ms"}
+{"level":"INFO","time":"2020-06-10T02:05:41.604+0300","message":"Query UPDATE `person` SET `photo_uri` = 'example.com/photo/2', `updated_at` = '2020-06-09 23:05:41.600758' WHERE (`id` = 9) timing: 4.045855ms"}
+{"level":"ERROR","time":"2020-06-10T02:05:41.608+0300","message":"Query INSERT INTO `works_in` (`employee_id`,`department_id`,`appointement_id`,`date_from`) VALUES (9,2,3,'2020-07-01 00:00:00.000000') failed: Error 1062: Duplicate entry '9-2-3' for key 'works_in.PRIMARY'"}
+{"level":"INFO","time":"2020-06-10T02:05:41.608+0300","message":"Query INSERT INTO `works_in` (`employee_id`,`department_id`,`appointement_id`,`date_from`) VALUES (9,2,3,'2020-07-01 00:00:00.000000') timing: 3.253443ms"}
+{"level":"ERROR","time":"2020-06-10T02:05:41.622+0300","message":"can not update person: Error 1062: Duplicate entry '9-2-3' for key 'works_in.PRIMARY'"}
+{"level":"ERROR","time":"2020-06-10T02:05:41.622+0300","message":"error in processor: Error 1062: Duplicate entry '9-2-3' for key 'works_in.PRIMARY'"}
+{"level":"INFO","time":"2020-06-10T02:05:41.622+0300","message":"server: done 400"}
+{"level":"INFO","time":"2020-06-10T02:12:13.477+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T02:12:13.478+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T02:12:13.478+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T19:32:35.186+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T19:32:39.649+0300","message":"server: POST /v1/task.json"}
+{"level":"INFO","time":"2020-06-10T19:32:39.774+0300","message":"Query INSERT INTO `employee_post` (`text`,`employee_id`) VALUES ('Invert a binary tree.',1) timing: 109.544832ms"}
+{"level":"INFO","time":"2020-06-10T19:32:39.798+0300","message":"Query INSERT INTO `task` (`title`,`post_id`) VALUES ('My ultra cool Go task from Google!',3) timing: 23.893014ms"}
+{"level":"ERROR","time":"2020-06-10T19:32:39.798+0300","message":"Query INSERT IGNORE INTO `skill` (`name`) VALUES ('algorithms' failed: dbr: wrong placeholder count"}
+{"level":"ERROR","time":"2020-06-10T19:32:39.815+0300","message":"can not create task: can not create skills: dbr: wrong placeholder count"}
+{"level":"ERROR","time":"2020-06-10T19:32:39.815+0300","message":"error in processor: can not create skills: dbr: wrong placeholder count"}
+{"level":"INFO","time":"2020-06-10T19:32:39.816+0300","message":"server: done 500"}
+{"level":"INFO","time":"2020-06-10T19:38:34.062+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T19:38:34.063+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T19:38:34.063+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T19:38:44.371+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T19:38:48.418+0300","message":"server: POST /v1/task.json"}
+{"level":"INFO","time":"2020-06-10T19:38:48.469+0300","message":"Query INSERT INTO `employee_post` (`text`,`employee_id`) VALUES ('Invert a binary tree.',1) timing: 13.515501ms"}
+{"level":"INFO","time":"2020-06-10T19:38:48.480+0300","message":"Query INSERT INTO `task` (`title`,`post_id`) VALUES ('My ultra cool Go task from Google!',4) timing: 10.614947ms"}
+{"level":"INFO","time":"2020-06-10T19:38:48.546+0300","message":"Query INSERT INTO `attachment` (`uri`,`post_id`,`comment_id`) VALUES ('https://leetcode.com/problems/invert-binary-tree/',4,NULL), ('https://twitter.com/mxcl/status/608682016205344768',4,NULL) timing: 66.172612ms"}
+{"level":"INFO","time":"2020-06-10T19:38:48.563+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T19:43:17.018+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T19:43:17.019+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T19:43:17.019+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T19:43:31.595+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T19:43:37.729+0300","message":"server: POST /v1/task.json"}
+{"level":"INFO","time":"2020-06-10T19:43:37.751+0300","message":"Query INSERT INTO `employee_post` (`text`,`employee_id`) VALUES ('Invert a binary tree.',1) timing: 5.415653ms"}
+{"level":"INFO","time":"2020-06-10T19:43:37.896+0300","message":"Query INSERT INTO `task` (`title`,`post_id`) VALUES ('My ultra cool Go task from Google!',5) timing: 145.687203ms"}
+{"level":"INFO","time":"2020-06-10T19:43:38.444+0300","message":"Query INSERT IGNORE INTO `skill` (`name`) VALUES ('algorithms'), ('any_lang') timing: 547.556137ms"}
+{"level":"INFO","time":"2020-06-10T19:43:38.667+0300","message":"Query SELECT id, name FROM skill WHERE (`name` IN ('algorithms','any_lang')) timing: 222.865506ms"}
+{"level":"INFO","time":"2020-06-10T19:43:39.102+0300","message":"Query INSERT INTO task_skill_requirement (task_id, skill_id, difficulty) VALUES (5, 11, 1), (5, 12, 1) timing: 434.503773ms"}
+{"level":"INFO","time":"2020-06-10T19:43:39.113+0300","message":"Query INSERT INTO `attachment` (`uri`,`post_id`,`comment_id`) VALUES ('https://leetcode.com/problems/invert-binary-tree/',5,NULL), ('https://twitter.com/mxcl/status/608682016205344768',5,NULL) timing: 10.410954ms"}
+{"level":"INFO","time":"2020-06-10T19:43:39.128+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T19:46:29.488+0300","message":"server: GET /v1/task/6.json"}
+{"level":"INFO","time":"2020-06-10T19:46:29.508+0300","message":"Query SELECT r.task_id AS task_id, s.name AS skill_name, CAST(r.difficulty as unsigned) AS difficulty FROM `task_skill_requirement` AS `r` JOIN `skill` AS `s` ON r.skill_id=s.id WHERE (`task_id` IN (6)) timing: 19.247601ms"}
+{"level":"INFO","time":"2020-06-10T19:46:29.510+0300","message":"Query SELECT p.id AS id, t.title AS title, p.text AS text, CAST(p.status as unsigned) AS status, p.created_at AS created_at, p.updated_at AS updated_at, p.employee_id AS employee_id FROM `employee_post` AS `p` JOIN `task` AS `t` ON p.id=t.post_id WHERE (`p`.`status` != 2) AND (`p`.`id` IN (6)) timing: 20.520719ms"}
+{"level":"INFO","time":"2020-06-10T19:46:29.528+0300","message":"Query SELECT p.id AS id, p.text AS text, p.created_at AS created_at , p.updated_at AS updated_at, p.employee_id AS employee_id, s.task_id AS task_id, s.is_approved AS is_approved FROM `employee_post` AS `p` JOIN `solution` AS `s` ON p.id=s.post_id WHERE (`p`.`status` != 2) AND (`s`.`task_id` IN (6)) ORDER BY s.is_approved DESC, p.created_at DESC timing: 38.927724ms"}
+{"level":"INFO","time":"2020-06-10T19:46:29.548+0300","message":"Query SELECT id, text, CAST(status AS unsigned) AS status, created_at, updated_at, employee_id, post_id, parent FROM comment WHERE (`status` != 2) AND (`post_id` IN (6)) timing: 20.140453ms"}
+{"level":"INFO","time":"2020-06-10T19:46:29.552+0300","message":"Query SELECT id, uri, CAST(status AS unsigned) AS status, post_id, comment_id FROM attachment WHERE (`status` != 2) AND ((`post_id` IN (6)) OR (0)) timing: 3.488194ms"}
+{"level":"INFO","time":"2020-06-10T19:46:29.554+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` JOIN `employee` AS `e` ON p.id=e.person_id WHERE (`p`.`status` != 3) AND (`p`.`id` IN (1)) timing: 5.696479ms"}
+{"level":"INFO","time":"2020-06-10T19:46:29.555+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T19:52:11.136+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T19:52:11.136+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T19:52:11.137+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T19:52:25.528+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T19:52:38.994+0300","message":"server: POST /v1/task.json"}
+{"level":"ERROR","time":"2020-06-10T19:52:38.996+0300","message":"server: can not parse args wrong value, expected one of (low, medium, hard, unsolvable)"}
+{"level":"INFO","time":"2020-06-10T19:52:38.996+0300","message":"server: done 500"}
+{"level":"INFO","time":"2020-06-10T20:13:27.949+0300","message":"server: POST /v1/task.json"}
+{"level":"ERROR","time":"2020-06-10T20:13:27.950+0300","message":"server: can not parse args wrong value, expected one of (low, medium, hard, unsolvable)"}
+{"level":"INFO","time":"2020-06-10T20:13:27.950+0300","message":"server: done 500"}
+{"level":"INFO","time":"2020-06-10T20:13:36.249+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T20:13:36.250+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T20:13:36.250+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T20:13:44.057+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T20:13:52.686+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T20:13:52.687+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T20:13:52.687+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T20:14:29.315+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T20:14:55.335+0300","message":"server: POST /v1/task.json"}
+{"level":"ERROR","time":"2020-06-10T20:14:55.336+0300","message":"server: can not parse args wrong value, expected one of (low, medium, hard, unsolvable)"}
+{"level":"INFO","time":"2020-06-10T20:14:55.336+0300","message":"server: done 400"}
+{"level":"INFO","time":"2020-06-10T20:15:36.307+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T20:15:36.307+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T20:15:36.307+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T20:34:28.577+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T20:34:31.158+0300","message":"server: GET /v1/task.json"}
+{"level":"ERROR","time":"2020-06-10T20:34:31.160+0300","message":"server: can not parse args json: cannot unmarshal number into Go struct field Arguments.author_id of type []int64"}
+{"level":"INFO","time":"2020-06-10T20:34:31.160+0300","message":"server: done 400"}
+{"level":"INFO","time":"2020-06-10T20:34:41.879+0300","message":"server: GET /v1/task.json"}
+{"level":"INFO","time":"2020-06-10T20:34:41.945+0300","message":"Query SELECT p.id AS id, t.title AS title, p.text AS text, p.employee_id AS employee_id FROM `employee_post` AS `p` JOIN `task` AS `t` ON p.id=t.post_id WHERE (`p`.`status` != 2) timing: 65.205612ms"}
+{"level":"INFO","time":"2020-06-10T20:34:41.964+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` JOIN `employee` AS `e` ON p.id=e.person_id WHERE (`p`.`status` != 3) AND (`p`.`id` IN (1)) timing: 18.91589ms"}
+{"level":"INFO","time":"2020-06-10T20:34:41.973+0300","message":"Query SELECT r.task_id AS task_id, s.name AS skill_name, CAST(r.difficulty as unsigned) AS difficulty FROM `task_skill_requirement` AS `r` JOIN `skill` AS `s` ON r.skill_id=s.id WHERE (`task_id` IN (1,4,5,6)) timing: 9.275633ms"}
+{"level":"INFO","time":"2020-06-10T20:34:41.973+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T20:40:06.916+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T20:40:06.918+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T20:40:06.919+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T20:40:14.556+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T20:40:19.845+0300","message":"server: GET /v1/task.json"}
+{"level":"INFO","time":"2020-06-10T20:40:19.856+0300","message":"Query SELECT p.id AS id, t.title AS title, p.text AS text, p.employee_id AS employee_id FROM `employee_post` AS `p` JOIN `task` AS `t` ON p.id=t.post_id WHERE (`p`.`status` != 2) timing: 10.342085ms"}
+{"level":"INFO","time":"2020-06-10T20:40:19.864+0300","message":"Query SELECT r.task_id AS task_id, s.name AS skill_name, CAST(r.difficulty as unsigned) AS difficulty FROM `task_skill_requirement` AS `r` JOIN `skill` AS `s` ON r.skill_id=s.id WHERE (`task_id` IN (1,4,5,6)) timing: 6.961013ms"}
+{"level":"INFO","time":"2020-06-10T20:40:19.869+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` JOIN `employee` AS `e` ON p.id=e.person_id WHERE (`p`.`status` != 3) AND (`p`.`id` IN (1)) timing: 12.62223ms"}
+{"level":"INFO","time":"2020-06-10T20:40:19.870+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T20:40:25.867+0300","message":"server: GET /v1/task.json"}
+{"level":"INFO","time":"2020-06-10T20:40:25.875+0300","message":"Query SELECT p.id AS id, t.title AS title, p.text AS text, p.employee_id AS employee_id FROM `employee_post` AS `p` JOIN `task` AS `t` ON p.id=t.post_id WHERE (`p`.`status` != 2) timing: 7.606164ms"}
+{"level":"INFO","time":"2020-06-10T20:40:25.881+0300","message":"Query SELECT r.task_id AS task_id, s.name AS skill_name, CAST(r.difficulty as unsigned) AS difficulty FROM `task_skill_requirement` AS `r` JOIN `skill` AS `s` ON r.skill_id=s.id WHERE (`task_id` IN (1,4,5,6)) timing: 5.930792ms"}
+{"level":"INFO","time":"2020-06-10T20:40:25.883+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` JOIN `employee` AS `e` ON p.id=e.person_id WHERE (`p`.`status` != 3) AND (`p`.`id` IN (1)) timing: 8.304572ms"}
+{"level":"INFO","time":"2020-06-10T20:40:25.884+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T22:15:55.773+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-10T22:15:55.777+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-10T22:15:55.777+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-10T23:01:57.193+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-10T23:03:11.534+0300","message":"server: DELETE /v1/person/5.json"}
+{"level":"INFO","time":"2020-06-10T23:03:11.618+0300","message":"Query UPDATE `person` SET `status` = 3 WHERE (`status` != 3) AND (`id` = 5) timing: 82.907881ms"}
+{"level":"INFO","time":"2020-06-10T23:03:11.619+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-10T23:03:58.623+0300","message":"server: DELETE /v1/person/5.json"}
+{"level":"INFO","time":"2020-06-10T23:03:58.628+0300","message":"Query UPDATE `person` SET `status` = 3 WHERE (`status` != 3) AND (`id` = 5) timing: 4.350899ms"}
+{"level":"ERROR","time":"2020-06-10T23:03:58.628+0300","message":"can not delete person: no rows affected"}
+{"level":"ERROR","time":"2020-06-10T23:03:58.628+0300","message":"error in processor: no rows affected"}
+{"level":"INFO","time":"2020-06-10T23:03:58.628+0300","message":"server: done 404"}
+{"level":"INFO","time":"2020-06-10T23:04:33.100+0300","message":"server: DELETE /v1/person/5.json"}
+{"level":"INFO","time":"2020-06-10T23:04:33.116+0300","message":"Query UPDATE `person` SET `status` = 3 WHERE (`status` != 3) AND (`id` = 5) timing: 16.007344ms"}
+{"level":"INFO","time":"2020-06-10T23:04:33.116+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-11T00:07:13.954+0300","message":"server: GET /v1/task/1.json"}
+{"level":"INFO","time":"2020-06-11T00:07:14.018+0300","message":"Query SELECT p.id AS id, t.title AS title, p.text AS text, CAST(p.status as unsigned) AS status, p.created_at AS created_at, p.updated_at AS updated_at, p.employee_id AS employee_id FROM `employee_post` AS `p` JOIN `task` AS `t` ON p.id=t.post_id WHERE (`p`.`status` != 2) AND (`p`.`id` IN (1)) timing: 63.842552ms"}
+{"level":"INFO","time":"2020-06-11T00:07:14.024+0300","message":"Query SELECT p.id AS id, p.text AS text, p.created_at AS created_at , p.updated_at AS updated_at, p.employee_id AS employee_id, s.task_id AS task_id, s.is_approved AS is_approved FROM `employee_post` AS `p` JOIN `solution` AS `s` ON p.id=s.post_id WHERE (`p`.`status` != 2) AND (`s`.`task_id` IN (1)) ORDER BY s.is_approved DESC, p.created_at DESC timing: 68.597873ms"}
+{"level":"INFO","time":"2020-06-11T00:07:14.024+0300","message":"Query SELECT r.task_id AS task_id, s.name AS skill_name, CAST(r.difficulty as unsigned) AS difficulty FROM `task_skill_requirement` AS `r` JOIN `skill` AS `s` ON r.skill_id=s.id WHERE (`task_id` IN (1)) timing: 69.502241ms"}
+{"level":"INFO","time":"2020-06-11T00:07:14.028+0300","message":"Query SELECT id, text, CAST(status AS unsigned) AS status, created_at, updated_at, employee_id, post_id, parent FROM comment WHERE (`status` != 2) AND (`post_id` IN (1,7,2)) timing: 3.971215ms"}
+{"level":"INFO","time":"2020-06-11T00:07:14.046+0300","message":"Query SELECT id, uri, CAST(status AS unsigned) AS status, post_id, comment_id FROM attachment WHERE (`status` != 2) AND ((`post_id` IN (1,7,2)) OR (0)) timing: 18.234649ms"}
+{"level":"INFO","time":"2020-06-11T00:07:14.053+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` JOIN `employee` AS `e` ON p.id=e.person_id WHERE (`p`.`status` != 3) AND (`p`.`id` IN (1)) timing: 24.404541ms"}
+{"level":"INFO","time":"2020-06-11T00:07:14.053+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-11T00:10:12.161+0300","message":"server: POST /v1/task/1/comment.json"}
+{"level":"INFO","time":"2020-06-11T00:10:12.189+0300","message":"Query INSERT INTO `comment` (`post_id`,`employee_id`,`text`,`parent`) VALUES (1,1,'Thank you for your solution.',NULL) timing: 20.64023ms"}
+{"level":"INFO","time":"2020-06-11T00:10:12.196+0300","message":"Query INSERT INTO `attachment` (`uri`,`post_id`,`comment_id`) VALUES ('https://drive.google.com/drive/folders/some-useful-attachment',NULL,2) timing: 7.062415ms"}
+{"level":"INFO","time":"2020-06-11T00:10:12.216+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-11T00:10:30.865+0300","message":"server: POST /v1/task/1/comment.json"}
+{"level":"INFO","time":"2020-06-11T00:10:30.918+0300","message":"Query INSERT INTO `comment` (`post_id`,`employee_id`,`text`,`parent`) VALUES (1,1,'It\\'s ok.',2) timing: 9.368092ms"}
+{"level":"INFO","time":"2020-06-11T00:10:30.922+0300","message":"Query INSERT INTO `attachment` (`uri`,`post_id`,`comment_id`) VALUES ('https://drive.google.com/drive/folders/some-useful-attachment',NULL,3) timing: 4.364509ms"}
+{"level":"INFO","time":"2020-06-11T00:10:30.935+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-11T00:10:38.128+0300","message":"server: POST /v1/task/1/comment.json"}
+{"level":"INFO","time":"2020-06-11T00:10:38.152+0300","message":"Query INSERT INTO `comment` (`post_id`,`employee_id`,`text`,`parent`) VALUES (1,1,'OK.',3) timing: 16.718052ms"}
+{"level":"INFO","time":"2020-06-11T00:10:38.156+0300","message":"Query INSERT INTO `attachment` (`uri`,`post_id`,`comment_id`) VALUES ('https://drive.google.com/drive/folders/some-useful-attachment',NULL,4) timing: 3.822511ms"}
+{"level":"INFO","time":"2020-06-11T00:10:38.164+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-11T00:10:43.481+0300","message":"server: GET /v1/task/1.json"}
+{"level":"INFO","time":"2020-06-11T00:10:43.490+0300","message":"Query SELECT p.id AS id, t.title AS title, p.text AS text, CAST(p.status as unsigned) AS status, p.created_at AS created_at, p.updated_at AS updated_at, p.employee_id AS employee_id FROM `employee_post` AS `p` JOIN `task` AS `t` ON p.id=t.post_id WHERE (`p`.`status` != 2) AND (`p`.`id` IN (1)) timing: 8.844364ms"}
+{"level":"INFO","time":"2020-06-11T00:10:43.491+0300","message":"Query SELECT r.task_id AS task_id, s.name AS skill_name, CAST(r.difficulty as unsigned) AS difficulty FROM `task_skill_requirement` AS `r` JOIN `skill` AS `s` ON r.skill_id=s.id WHERE (`task_id` IN (1)) timing: 9.100171ms"}
+{"level":"INFO","time":"2020-06-11T00:10:43.507+0300","message":"Query SELECT p.id AS id, p.text AS text, p.created_at AS created_at , p.updated_at AS updated_at, p.employee_id AS employee_id, s.task_id AS task_id, s.is_approved AS is_approved FROM `employee_post` AS `p` JOIN `solution` AS `s` ON p.id=s.post_id WHERE (`p`.`status` != 2) AND (`s`.`task_id` IN (1)) ORDER BY s.is_approved DESC, p.created_at DESC timing: 25.254848ms"}
+{"level":"INFO","time":"2020-06-11T00:10:43.514+0300","message":"Query SELECT id, text, CAST(status AS unsigned) AS status, created_at, updated_at, employee_id, post_id, parent FROM comment WHERE (`status` != 2) AND (`post_id` IN (1,7,2)) timing: 6.364956ms"}
+{"level":"INFO","time":"2020-06-11T00:10:43.520+0300","message":"Query SELECT id, uri, CAST(status AS unsigned) AS status, post_id, comment_id FROM attachment WHERE (`status` != 2) AND ((`post_id` IN (1,7,2)) OR (`comment_id` IN (2,3,4))) timing: 6.25882ms"}
+{"level":"INFO","time":"2020-06-11T00:10:43.528+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` JOIN `employee` AS `e` ON p.id=e.person_id WHERE (`p`.`status` != 3) AND (`p`.`id` IN (1)) timing: 13.715076ms"}
+{"level":"INFO","time":"2020-06-11T00:10:43.528+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-11T00:11:17.172+0300","message":"server: DELETE /v1/comment/2.json"}
+{"level":"ERROR","time":"2020-06-11T00:11:17.204+0300","message":"Query UPDATE `comment` SET `status` = 2 WHERE (`status` != 2) AND (`id` = 2) failed: Error 1442: Can't update table 'comment' in stored function/trigger because it is already used by statement which invoked this stored function/trigger."}
+{"level":"INFO","time":"2020-06-11T00:11:17.204+0300","message":"Query UPDATE `comment` SET `status` = 2 WHERE (`status` != 2) AND (`id` = 2) timing: 32.148872ms"}
+{"level":"INFO","time":"2020-06-11T00:11:17.204+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-11T00:12:01.308+0300","message":"server: GET /v1/task/1.json"}
+{"level":"INFO","time":"2020-06-11T00:12:01.315+0300","message":"Query SELECT p.id AS id, t.title AS title, p.text AS text, CAST(p.status as unsigned) AS status, p.created_at AS created_at, p.updated_at AS updated_at, p.employee_id AS employee_id FROM `employee_post` AS `p` JOIN `task` AS `t` ON p.id=t.post_id WHERE (`p`.`status` != 2) AND (`p`.`id` IN (1)) timing: 7.100186ms"}
+{"level":"INFO","time":"2020-06-11T00:12:01.318+0300","message":"Query SELECT r.task_id AS task_id, s.name AS skill_name, CAST(r.difficulty as unsigned) AS difficulty FROM `task_skill_requirement` AS `r` JOIN `skill` AS `s` ON r.skill_id=s.id WHERE (`task_id` IN (1)) timing: 10.167853ms"}
+{"level":"INFO","time":"2020-06-11T00:12:01.325+0300","message":"Query SELECT p.id AS id, p.text AS text, p.created_at AS created_at , p.updated_at AS updated_at, p.employee_id AS employee_id, s.task_id AS task_id, s.is_approved AS is_approved FROM `employee_post` AS `p` JOIN `solution` AS `s` ON p.id=s.post_id WHERE (`p`.`status` != 2) AND (`s`.`task_id` IN (1)) ORDER BY s.is_approved DESC, p.created_at DESC timing: 16.885557ms"}
+{"level":"INFO","time":"2020-06-11T00:12:01.433+0300","message":"Query SELECT id, text, CAST(status AS unsigned) AS status, created_at, updated_at, employee_id, post_id, parent FROM comment WHERE (`status` != 2) AND (`post_id` IN (1,7,2)) timing: 107.958297ms"}
+{"level":"INFO","time":"2020-06-11T00:12:01.442+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` JOIN `employee` AS `e` ON p.id=e.person_id WHERE (`p`.`status` != 3) AND (`p`.`id` IN (1)) timing: 8.831915ms"}
+{"level":"INFO","time":"2020-06-11T00:12:01.444+0300","message":"Query SELECT id, uri, CAST(status AS unsigned) AS status, post_id, comment_id FROM attachment WHERE (`status` != 2) AND ((`post_id` IN (1,7,2)) OR (`comment_id` IN (2,3,4))) timing: 10.879565ms"}
+{"level":"INFO","time":"2020-06-11T00:12:01.445+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-11T00:13:19.070+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-11T00:13:19.070+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-11T00:13:19.070+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-11T00:13:20.579+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-11T00:13:24.530+0300","message":"server: GET /v1/task/1.json"}
+{"level":"INFO","time":"2020-06-11T00:13:24.557+0300","message":"Query SELECT p.id AS id, t.title AS title, p.text AS text, CAST(p.status as unsigned) AS status, p.created_at AS created_at, p.updated_at AS updated_at, p.employee_id AS employee_id FROM `employee_post` AS `p` JOIN `task` AS `t` ON p.id=t.post_id WHERE (`p`.`status` != 2) AND (`p`.`id` IN (1)) timing: 26.252021ms"}
+{"level":"INFO","time":"2020-06-11T00:13:24.557+0300","message":"Query SELECT r.task_id AS task_id, s.name AS skill_name, CAST(r.difficulty as unsigned) AS difficulty FROM `task_skill_requirement` AS `r` JOIN `skill` AS `s` ON r.skill_id=s.id WHERE (`task_id` IN (1)) timing: 26.445349ms"}
+{"level":"INFO","time":"2020-06-11T00:13:24.557+0300","message":"Query SELECT p.id AS id, p.text AS text, p.created_at AS created_at , p.updated_at AS updated_at, p.employee_id AS employee_id, s.task_id AS task_id, s.is_approved AS is_approved FROM `employee_post` AS `p` JOIN `solution` AS `s` ON p.id=s.post_id WHERE (`p`.`status` != 2) AND (`s`.`task_id` IN (1)) ORDER BY s.is_approved DESC, p.created_at DESC timing: 26.337922ms"}
+{"level":"INFO","time":"2020-06-11T00:13:24.562+0300","message":"Query SELECT id, text, CAST(status AS unsigned) AS status, created_at, updated_at, employee_id, post_id, parent FROM comment WHERE (`status` != 2) AND (`post_id` IN (7,2,1)) timing: 4.389418ms"}
+{"level":"INFO","time":"2020-06-11T00:13:24.568+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` JOIN `employee` AS `e` ON p.id=e.person_id WHERE (`p`.`status` != 3) AND (`p`.`id` IN (1)) timing: 6.18224ms"}
+{"level":"INFO","time":"2020-06-11T00:13:24.570+0300","message":"Query SELECT id, uri, CAST(status AS unsigned) AS status, post_id, comment_id FROM attachment WHERE (`status` != 2) AND ((`post_id` IN (1,7,2)) OR (`comment_id` IN (2,3,4))) timing: 8.31935ms"}
+{"level":"INFO","time":"2020-06-11T00:13:24.571+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-11T00:14:47.181+0300","message":"server: DELETE /v1/comment/2.json"}
+{"level":"INFO","time":"2020-06-11T00:14:47.194+0300","message":"Query UPDATE `comment` SET `status` = 2 WHERE (`status` != 2) AND (`id` = 2) timing: 12.762782ms"}
+{"level":"INFO","time":"2020-06-11T00:14:47.194+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-11T00:15:03.461+0300","message":"server: GET /v1/task/1.json"}
+{"level":"INFO","time":"2020-06-11T00:15:03.496+0300","message":"Query SELECT p.id AS id, t.title AS title, p.text AS text, CAST(p.status as unsigned) AS status, p.created_at AS created_at, p.updated_at AS updated_at, p.employee_id AS employee_id FROM `employee_post` AS `p` JOIN `task` AS `t` ON p.id=t.post_id WHERE (`p`.`status` != 2) AND (`p`.`id` IN (1)) timing: 34.642364ms"}
+{"level":"INFO","time":"2020-06-11T00:15:03.496+0300","message":"Query SELECT r.task_id AS task_id, s.name AS skill_name, CAST(r.difficulty as unsigned) AS difficulty FROM `task_skill_requirement` AS `r` JOIN `skill` AS `s` ON r.skill_id=s.id WHERE (`task_id` IN (1)) timing: 35.015674ms"}
+{"level":"INFO","time":"2020-06-11T00:15:03.567+0300","message":"Query SELECT p.id AS id, p.text AS text, p.created_at AS created_at , p.updated_at AS updated_at, p.employee_id AS employee_id, s.task_id AS task_id, s.is_approved AS is_approved FROM `employee_post` AS `p` JOIN `solution` AS `s` ON p.id=s.post_id WHERE (`p`.`status` != 2) AND (`s`.`task_id` IN (1)) ORDER BY s.is_approved DESC, p.created_at DESC timing: 105.759061ms"}
+{"level":"INFO","time":"2020-06-11T00:15:03.573+0300","message":"Query SELECT id, text, CAST(status AS unsigned) AS status, created_at, updated_at, employee_id, post_id, parent FROM comment WHERE (`status` != 2) AND (`post_id` IN (7,2,1)) timing: 5.315583ms"}
+{"level":"INFO","time":"2020-06-11T00:15:03.593+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` JOIN `employee` AS `e` ON p.id=e.person_id WHERE (`p`.`status` != 3) AND (`p`.`id` IN (1)) timing: 19.868146ms"}
+{"level":"INFO","time":"2020-06-11T00:15:03.593+0300","message":"Query SELECT id, uri, CAST(status AS unsigned) AS status, post_id, comment_id FROM attachment WHERE (`status` != 2) AND ((`post_id` IN (1,7,2)) OR (`comment_id` IN (3,4))) timing: 19.874304ms"}
+{"level":"INFO","time":"2020-06-11T00:15:03.593+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-11T00:25:16.041+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-11T00:25:16.042+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-11T00:25:16.042+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-11T00:25:35.338+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-11T00:25:40.596+0300","message":"server: GET /v1/task/1.json"}
+{"level":"INFO","time":"2020-06-11T00:25:40.614+0300","message":"Query SELECT r.task_id AS task_id, s.name AS skill_name, CAST(r.difficulty as unsigned) AS difficulty FROM `task_skill_requirement` AS `r` JOIN `skill` AS `s` ON r.skill_id=s.id WHERE (`task_id` IN (1)) timing: 17.067587ms"}
+{"level":"INFO","time":"2020-06-11T00:25:40.614+0300","message":"Query SELECT p.id AS id, t.title AS title, p.text AS text, CAST(p.status as unsigned) AS status, p.created_at AS created_at, p.updated_at AS updated_at, p.employee_id AS employee_id FROM `employee_post` AS `p` JOIN `task` AS `t` ON p.id=t.post_id WHERE (`p`.`status` != 2) AND (`p`.`id` IN (1)) timing: 17.113677ms"}
+{"level":"INFO","time":"2020-06-11T00:25:40.621+0300","message":"Query SELECT p.id AS id, p.text AS text, p.created_at AS created_at , p.updated_at AS updated_at, p.employee_id AS employee_id, s.task_id AS task_id, s.is_approved AS is_approved FROM `employee_post` AS `p` JOIN `solution` AS `s` ON p.id=s.post_id WHERE (`p`.`status` != 2) AND (`s`.`task_id` IN (1)) ORDER BY s.is_approved DESC, p.created_at DESC timing: 23.572797ms"}
+{"level":"INFO","time":"2020-06-11T00:25:40.625+0300","message":"Query SELECT id, text, CAST(status AS unsigned) AS status, created_at, updated_at, employee_id, post_id, parent FROM comment WHERE (`post_id` IN (1,7,2)) timing: 4.156656ms"}
+{"level":"INFO","time":"2020-06-11T00:25:40.635+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` JOIN `employee` AS `e` ON p.id=e.person_id WHERE (`p`.`status` != 3) AND (`p`.`id` IN (1)) timing: 8.772987ms"}
+{"level":"INFO","time":"2020-06-11T00:26:28.502+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-11T00:26:30.922+0300","message":"server: GET /v1/task/1.json"}
+{"level":"INFO","time":"2020-06-11T00:26:30.946+0300","message":"Query SELECT p.id AS id, p.text AS text, p.created_at AS created_at , p.updated_at AS updated_at, p.employee_id AS employee_id, s.task_id AS task_id, s.is_approved AS is_approved FROM `employee_post` AS `p` JOIN `solution` AS `s` ON p.id=s.post_id WHERE (`p`.`status` != 2) AND (`s`.`task_id` IN (1)) ORDER BY s.is_approved DESC, p.created_at DESC timing: 22.594699ms"}
+{"level":"INFO","time":"2020-06-11T00:26:30.947+0300","message":"Query SELECT p.id AS id, t.title AS title, p.text AS text, CAST(p.status as unsigned) AS status, p.created_at AS created_at, p.updated_at AS updated_at, p.employee_id AS employee_id FROM `employee_post` AS `p` JOIN `task` AS `t` ON p.id=t.post_id WHERE (`p`.`status` != 2) AND (`p`.`id` IN (1)) timing: 23.724286ms"}
+{"level":"INFO","time":"2020-06-11T00:26:30.948+0300","message":"Query SELECT r.task_id AS task_id, s.name AS skill_name, CAST(r.difficulty as unsigned) AS difficulty FROM `task_skill_requirement` AS `r` JOIN `skill` AS `s` ON r.skill_id=s.id WHERE (`task_id` IN (1)) timing: 25.627658ms"}
+{"level":"INFO","time":"2020-06-11T00:26:30.954+0300","message":"Query SELECT id, text, CAST(status AS unsigned) AS status, created_at, updated_at, employee_id, post_id, parent FROM comment WHERE (`post_id` IN (7,2,1)) timing: 5.433255ms"}
+{"level":"INFO","time":"2020-06-11T00:26:30.958+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` JOIN `employee` AS `e` ON p.id=e.person_id WHERE (`p`.`status` != 3) AND (`p`.`id` IN (1)) timing: 3.671394ms"}
+{"level":"INFO","time":"2020-06-11T00:26:30.958+0300","message":"Query SELECT id, uri, CAST(status AS unsigned) AS status, post_id, comment_id FROM attachment WHERE (`status` != 2) AND ((`post_id` IN (7,2,1)) OR (`comment_id` IN (3,4))) timing: 3.673582ms"}
+{"level":"INFO","time":"2020-06-11T00:26:30.959+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-11T00:26:59.655+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-11T00:26:59.656+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-11T00:26:59.657+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-11T00:27:05.698+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-11T00:27:08.389+0300","message":"server: GET /v1/task/1.json"}
+{"level":"INFO","time":"2020-06-11T00:27:08.402+0300","message":"Query SELECT p.id AS id, p.text AS text, p.created_at AS created_at , p.updated_at AS updated_at, p.employee_id AS employee_id, s.task_id AS task_id, s.is_approved AS is_approved FROM `employee_post` AS `p` JOIN `solution` AS `s` ON p.id=s.post_id WHERE (`p`.`status` != 2) AND (`s`.`task_id` IN (1)) ORDER BY s.is_approved DESC, p.created_at DESC timing: 12.382355ms"}
+{"level":"INFO","time":"2020-06-11T00:27:08.402+0300","message":"Query SELECT p.id AS id, t.title AS title, p.text AS text, CAST(p.status as unsigned) AS status, p.created_at AS created_at, p.updated_at AS updated_at, p.employee_id AS employee_id FROM `employee_post` AS `p` JOIN `task` AS `t` ON p.id=t.post_id WHERE (`p`.`status` != 2) AND (`p`.`id` IN (1)) timing: 12.524058ms"}
+{"level":"INFO","time":"2020-06-11T00:27:08.405+0300","message":"Query SELECT r.task_id AS task_id, s.name AS skill_name, CAST(r.difficulty as unsigned) AS difficulty FROM `task_skill_requirement` AS `r` JOIN `skill` AS `s` ON r.skill_id=s.id WHERE (`task_id` IN (1)) timing: 16.052103ms"}
+{"level":"INFO","time":"2020-06-11T00:27:08.412+0300","message":"Query SELECT id, text, CAST(status AS unsigned) AS status, created_at, updated_at, employee_id, post_id, parent FROM comment WHERE (`post_id` IN (7,2,1)) timing: 6.404308ms"}
+{"level":"INFO","time":"2020-06-11T00:27:08.419+0300","message":"Query SELECT id, uri, CAST(status AS unsigned) AS status, post_id, comment_id FROM attachment WHERE (`status` != 2) AND ((`post_id` IN (1,7,2)) OR (`comment_id` IN (3,4))) timing: 6.80229ms"}
+{"level":"INFO","time":"2020-06-11T00:27:08.419+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` JOIN `employee` AS `e` ON p.id=e.person_id WHERE (`p`.`status` != 3) AND (`p`.`id` IN (1)) timing: 6.743048ms"}
+{"level":"INFO","time":"2020-06-11T00:27:08.420+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-11T00:27:23.009+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-11T00:27:23.009+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-11T00:27:23.010+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-11T00:27:30.252+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-11T00:27:34.926+0300","message":"server: GET /v1/task/1.json"}
+{"level":"INFO","time":"2020-06-11T00:27:34.980+0300","message":"Query SELECT p.id AS id, p.text AS text, p.created_at AS created_at , p.updated_at AS updated_at, p.employee_id AS employee_id, s.task_id AS task_id, s.is_approved AS is_approved FROM `employee_post` AS `p` JOIN `solution` AS `s` ON p.id=s.post_id WHERE (`p`.`status` != 2) AND (`s`.`task_id` IN (1)) ORDER BY s.is_approved DESC, p.created_at DESC timing: 52.192448ms"}
+{"level":"INFO","time":"2020-06-11T00:27:34.991+0300","message":"Query SELECT r.task_id AS task_id, s.name AS skill_name, CAST(r.difficulty as unsigned) AS difficulty FROM `task_skill_requirement` AS `r` JOIN `skill` AS `s` ON r.skill_id=s.id WHERE (`task_id` IN (1)) timing: 63.994861ms"}
+{"level":"INFO","time":"2020-06-11T00:27:34.992+0300","message":"Query SELECT p.id AS id, t.title AS title, p.text AS text, CAST(p.status as unsigned) AS status, p.created_at AS created_at, p.updated_at AS updated_at, p.employee_id AS employee_id FROM `employee_post` AS `p` JOIN `task` AS `t` ON p.id=t.post_id WHERE (`p`.`status` != 2) AND (`p`.`id` IN (1)) timing: 64.708884ms"}
+{"level":"INFO","time":"2020-06-11T00:27:35.021+0300","message":"Query SELECT id, text, CAST(status AS unsigned) AS status, created_at, updated_at, employee_id, post_id, parent FROM comment WHERE (`post_id` IN (1,7,2)) timing: 28.968602ms"}
+{"level":"INFO","time":"2020-06-11T00:27:35.028+0300","message":"Query SELECT id, uri, CAST(status AS unsigned) AS status, post_id, comment_id FROM attachment WHERE (`status` != 2) AND ((`post_id` IN (7,2,1)) OR (`comment_id` IN (3,4))) timing: 6.664763ms"}
+{"level":"INFO","time":"2020-06-11T00:27:35.032+0300","message":"Query SELECT p.id, p.photo_uri, p.first_name, p.last_name FROM `person` AS `p` JOIN `employee` AS `e` ON p.id=e.person_id WHERE (`p`.`status` != 3) AND (`p`.`id` IN (1)) timing: 11.084792ms"}
+{"level":"INFO","time":"2020-06-11T00:27:35.033+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-11T01:25:32.985+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-11T01:25:32.986+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-11T01:25:32.986+0300","message":"done!"}
+{"level":"INFO","time":"2020-06-11T01:28:15.819+0300","message":"server was started!"}
+{"level":"INFO","time":"2020-06-11T01:28:18.131+0300","message":"server: GET /v1/vacancy.json"}
+{"level":"INFO","time":"2020-06-11T01:28:18.156+0300","message":"Query SELECT v.id, v.description, CAST(v.priority AS unsigned) AS priority, CAST(v.status AS unsigned) AS status, v.created_at, v.updated_at, d.name AS department_name, a.name AS appointement_name FROM `vacancy` AS `v` JOIN `department` AS `d` ON v.department_id=d.id JOIN `appointement` AS `a` ON v.appointement_id=a.id ORDER BY status ASC, priority DESC timing: 24.270938ms"}
+{"level":"INFO","time":"2020-06-11T01:28:18.156+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-11T02:24:12.606+0300","message":"server: GET /v1/interview/1.json"}
+{"level":"INFO","time":"2020-06-11T02:24:12.718+0300","message":"Query SELECT c.task_id, c.comment, c.score, s.name AS skill_name FROM `requirement_check` AS `c` JOIN `skill` AS `s` ON c.skill_id=s.id WHERE (`c`.`interview_id` = 1) timing: 112.078291ms"}
+{"level":"INFO","time":"2020-06-11T02:24:12.830+0300","message":"Query SELECT i.id, i.planned_date, CAST(i.status AS unsigned) AS status, i.comment, i.total_score, i.created_at, i.updated_at, i.person_id, i.interviewer_id, i.vacancy_id, p.id AS person_id, p.first_name AS person_first_name, p.last_name AS person_last_name, pe.id AS interviewer_id, e.email AS interviewer_email, pe.first_name AS interviewer_first_name, pe.last_name AS interviewer_last_name, v.id AS vacancy_id, d.name AS vacancy_department_name, a.name AS vacancy_appointement_name FROM `interview` AS `i` JOIN `person` AS `p` ON i.person_id=p.id LEFT JOIN `employee` AS `e` ON i.interviewer_id=e.person_id LEFT JOIN `person` AS `pe` ON e.person_id=pe.id JOIN `vacancy` AS `v` ON i.vacancy_id=v.id JOIN `department` AS `d` ON v.department_id=d.id JOIN `appointement` AS `a` ON v.appointement_id=a.id WHERE (`i`.`id` = 1) timing: 224.117154ms"}
+{"level":"INFO","time":"2020-06-11T02:24:12.831+0300","message":"server: done 200"}
+{"level":"INFO","time":"2020-06-11T02:42:59.715+0300","message":"got signal: interrupt"}
+{"level":"INFO","time":"2020-06-11T02:42:59.716+0300","message":"server was stoped!"}
+{"level":"INFO","time":"2020-06-11T02:42:59.716+0300","message":"done!"}
